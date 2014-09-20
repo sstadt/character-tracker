@@ -4,10 +4,10 @@ a [Sails](http://sailsjs.org) application
 
 # Setup
 
-`npm install -g sails`
-`cd project/directory`
-`npm install`
-`sails lift`
+	npm install -g sails
+	cd project/directory
+	npm install
+	sails lift
 
 The website should now be available at `localhost:1337`
 
