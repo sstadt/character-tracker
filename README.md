@@ -15,6 +15,10 @@ The project will initially be set to use memory, I don't think we need to hook i
 
 I'm using the latest version of sails, so this is slightly different than what I'm using on NannyMonster. They've split the gruntfile up into separate files in the `tasks` directory.
 
+## docs
+
+http://sailsjs.org/#/documentation/concepts
+
 # Templates
 
 I've set the app to run out of `views/tracker/index.ejs`, and added a create and show template. The default homepage can be changed in `config/routes.js` is needed.

@@ -34,6 +34,15 @@ module.exports.routes = {
 
   '/': {
     view: 'tracker/index'
+  },
+
+  '/static/classes': {
+    controller: 'static',
+    action: 'classes'
+  },
+  '/static/weapons': {
+    controller: 'static',
+    action: 'weapons'
   }
 
   /***************************************************************************
