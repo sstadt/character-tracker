@@ -6,11 +6,12 @@ a [Sails](http://sailsjs.org) application
 Setup
 -----
 
-`npm install -s sails`
+`npm install -g sails`
 `cd project/directory`
+`npm install`
 `sails lift`
 
-The website should now be available at `localhost:1337'
+The website should now be available at `localhost:1337`
 
 The project will initially be set to use memory, I don't think we need to hook it up to a database for the purposes of this. We don't need login, so we only need to be able to throw some data in.
 
