@@ -4,7 +4,8 @@ a [Sails](http://sailsjs.org) application
 
 # To Do
 
-* [scott] verify the controller/model logic is working properly with some test controls
+* [scott] Verify the controller/model logic is working properly with some test controls
+* [scott] Set up folder structure for ko application
 
 # Setup
 
