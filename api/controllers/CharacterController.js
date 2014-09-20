@@ -7,15 +7,7 @@
 
 module.exports = {
 	index: function (req, res, next) {
-		Character.find(function foundCharacters (err, characters) {
-			if (err) {
-				next(err);
-			} else {
-				res.view({
-					characters: characters
-				});
-			}
-		});
+		res.view();
 	},
 
 	show: function (req, res, next) {
@@ -27,6 +19,21 @@ module.exports = {
 					character: character
 				});
 			}
+		});
+	},
+
+	charlist: function (req, res, next) {
+		Character.find(function foundCharacters (err, characters) {
+			var response = {};
+			
+			if (err) {
+				response.err = err;
+			} else {
+				res.success = true;
+				res.characters = characters;
+			}
+
+			res.json(response);
 		});
 	},
 

@@ -43,6 +43,11 @@ module.exports.routes = {
   '/static/weapons': {
     controller: 'static',
     action: 'weapons'
+  },
+
+  '/character/getlist': {
+    controller: 'character',
+    action: 'charlist'
   }
 
   /***************************************************************************

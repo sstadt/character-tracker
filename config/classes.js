@@ -21,6 +21,6 @@ module.exports.classes = [
 
 module.exports.classbonus = {
 	primary: 6,
-	secondary: 2,
+	secondary: 3,
 	tertiary: -2
 }

@@ -32,10 +32,6 @@ module.exports = {
     	type: 'integer',
     	required: true
     },
-    health: {
-    	type: 'integer',
-    	required: true
-    },
     weapons: {
       type: 'array'
     },

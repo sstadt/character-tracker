@@ -14,12 +14,14 @@ requirejs.config({
 	}
 });
 
-require(['jquery', 'knockout'], function ($, ko) {
+require(['lodash', 'jquery', 'knockout'], function (_, $, ko) {
+	var defaultStatisticValue = 14;
 
-	// character class - no pun intended
+	// character
 	function Character(data) {
 		var self = this;
 
+		self.id = data.id;
 		self.name = data.name;
 		self.class = data.class;
 		self.strength = data.strength;
@@ -29,9 +31,18 @@ require(['jquery', 'knockout'], function ($, ko) {
 		self.biography = data.biography;
 
 		self.health = ko.computed(function () {
-			var vitalityBonus = Math.floor((12 - data.vitality) / 2);
-			return 10 + vitalityBonus;
+			return getAdjustedStatistic(10, data.vitality);
 		});
+	}
+
+	// character class
+	function CharacterClass(data) {
+		var self = this;
+
+		self.name = data.name;
+		self.primary = data.primary;
+		self.secondary = data.secondary;
+		self.tertiary = self.tertiary;
 	}
 
 	function CharacterListViewModel() {
@@ -39,65 +50,119 @@ require(['jquery', 'knockout'], function ($, ko) {
 
 		// data
 		self.characters = ko.observableArray([]);
+		self.classes = ko.observableArray([]);
+		self.classOptions = ko.observableArray([]);
 
 		self.newCharacterName = ko.observable();
 		self.newCharacterClass = ko.observable();
-		self.newCharacterStrength = ko.observable();
-		self.newCharacterDexterity = ko.observable();
-		self.newCharacterVitality = ko.observable();
-		self.newCharacterIntellect = ko.observable();
+		self.newCharacterStrength = ko.observable(defaultStatisticValue);
+		self.newCharacterDexterity = ko.observable(defaultStatisticValue);
+		self.newCharacterVitality = ko.observable(defaultStatisticValue);
+		self.newCharacterIntellect = ko.observable(defaultStatisticValue);
 		self.newCharacterBiography = ko.observable();
 
 		// operations
 		self.addCharacter = function() {
-			self.tasks.push(new Character({
-				title: this.newTaskText()
-			}));
+			var newChar = {
+				name: self.newCharacterName(),
+				class: self.newCharacterClass(),
+				strength: self.newCharacterStrength(),
+				dexterity: self.newCharacterDexterity(),
+				vitality: self.newCharacterVitality(),
+				intellect: self.newCharacterIntellect(),
+				biography: self.newCharacterBiography('')
+			};
 
-			self.newCharacterName();
-			self.newCharacterClass(1);
-			self.newCharacterStrength(14);
-			self.newCharacterDexterity(14);
-			self.newCharacterVitality(14);
-			self.newCharacterIntellect(14);
-			self.newCharacterBiography('');
+			$.post('/character/create', newChar, function (response) {
+				self.characters.push(new Character(response.character));
+
+				self.newCharacterName();
+				self.newCharacterClass(1);
+				self.newCharacterStrength(defaultStatisticValue);
+				self.newCharacterDexterity(defaultStatisticValue);
+				self.newCharacterVitality(defaultStatisticValue);
+				self.newCharacterIntellect(defaultStatisticValue);
+				self.newCharacterBiography('');
+			});
 		};
 
+		self.setNewCharacterClass = function() {
+			var charClass = _.find(self.classes(), function (c) {
+					return c.name === self.newCharacterClass();
+				});
+
+			self.newCharacterStrength(getClassBonus('strength', charClass, self.bonuses) + defaultStatisticValue);
+			self.newCharacterDexterity(getClassBonus('dexterity', charClass, self.bonuses) + defaultStatisticValue);
+			self.newCharacterVitality(getClassBonus('vitality', charClass, self.bonuses) + defaultStatisticValue);
+			self.newCharacterIntellect(getClassBonus('intellect', charClass, self.bonuses) + defaultStatisticValue);
+		};
+		
+		// populate class data
+		$.getJSON('/static/classes', function (data) {
+			var mappedClasses = $.map(data.classes, function (c) { return new CharacterClass(c) });
+
+			self.classes(mappedClasses);
+			self.classOptions(mappedClasses.map(function (c) {
+				return c.name;
+			}));
+
+			self.bonuses = data.bonuses;
+		});
+
 		// populate initial characters from api
-		$.getJSON('/getcharlist', function (characters) {
+		$.getJSON('/character/getlist', function (characters) {
 			console.log(characters);
+
 			var mappedCharacters = $.map(characters, function(c) { return new Character(c) });
+
 			self.characters(mappedCharacters);
 		});
 	}
 
+	function getClassBonus(statistic, charClass, bonuses) {
+		if (charClass.tertiary === statistic) {
+			return bonuses.tertiary;
+		} else if (charClass.secondary === statistic) {
+			return bonuses.secondary;
+		} else if (charClass.primary === statistic) {
+			return bonuses.primary;
+		} else {
+			return 0;
+		}
+	}
+
+	function getAdjustedStatistic(base, statistic) {
+		var bonus = Math.floor((statistic - 12) / 2);
+		return base + bonus;
+	}
+
 	ko.applyBindings(new CharacterListViewModel());
 
-	// call to get classes
-	$.ajax({
-		type: 'GET',
-		url: '/static/classes',
-		dataType: 'json',
-		cache: false,
-		success: function (classes) {
-			console.log('I just fetched the classes:');
-			console.log('---------------------------------------');
-			console.log(classes);
-			console.log('');
-		}
-	});
+	// // call to get classes
+	// $.ajax({
+	// 	type: 'GET',
+	// 	url: '/static/classes',
+	// 	dataType: 'json',
+	// 	cache: false,
+	// 	success: function (classes) {
+	// 		console.log('I just fetched the classes:');
+	// 		console.log('---------------------------------------');
+	// 		console.log(classes);
+	// 		console.log('');
+	// 	}
+	// });
 
-	// call to get weapons
-	$.ajax({
-		type: 'GET',
-		url: '/static/weapons',
-		dataType: 'json',
-		cache: false,
-		success: function (weapons) {
-			console.log('I just fetched the weapons:');
-			console.log('---------------------------------------');
-			console.log(weapons);
-			console.log('');
-		}
-	});
+	// // call to get weapons
+	// $.ajax({
+	// 	type: 'GET',
+	// 	url: '/static/weapons',
+	// 	dataType: 'json',
+	// 	cache: false,
+	// 	success: function (weapons) {
+	// 		console.log('I just fetched the weapons:');
+	// 		console.log('---------------------------------------');
+	// 		console.log(weapons);
+	// 		console.log('');
+	// 	}
+	// });
 });

@@ -8,7 +8,8 @@
 module.exports = {
 	classes: function (req, res, next) {
 		res.send({
-			classes: sails.config.classes
+			classes: sails.config.classes,
+			bonuses: sails.config.classbonus
 		});
 	},
 	weapons: function (req, res, next) {
