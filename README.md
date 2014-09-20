@@ -2,9 +2,7 @@
 
 a [Sails](http://sailsjs.org) application
 
------
-Setup
------
+# Setup
 
 `npm install -g sails`
 `cd project/directory`
@@ -17,13 +15,15 @@ The project will initially be set to use memory, I don't think we need to hook i
 
 I'm using the latest version of sails, so this is slightly different than what I'm using on NannyMonster. They've split the gruntfile up into separate files in the `tasks` directory.
 
-----------
-Characters
-----------
+# Templates
 
-Feel free to add anything to this list you would like to, anything you think would be appropriate to doing a capabilities demo for an ARM proposal.
+I've set the app to run out of `views/tracker/index.ejs`, and added a create and show template. The default homepage can be changed in `config/routes.js` is needed.
 
-# statistics 
+# Characters
+
+Feel free to add anything to this list you would like to, anything you think would be appropriate to doing a capabilities demo for an ARM proposal. I added this stuff to get a good base for a few modules; dice roller, create, and edit. We can use components/modules to roll dice, add/update characters, and keep track of character data. I'll get require in asap and we can use modules and ko components interchangeably.
+
+## statistics 
 
 * strength - roll/assign
 * dexterity - roll/assign
@@ -33,14 +33,14 @@ Feel free to add anything to this list you would like to, anything you think wou
 * bio - editable
 * name - editable
 
-# class
+## classes
 
-Classes can be configured in the `config/classes.js` file, the array of classes can be accessed in the back code via `sails.config.classes`
+Classes can be configured in the `config/classes.js` file, the array of classes can be accessed in the back code via 'sails.config.classes`
 
 * +2 to key statistic - str, dex, vit, int
 * +1 key statistic - str, dex, vit, int
 
-# weapon
+## weapons
 
 Weapons can be configured in the `config/weapons.js` file, the array of weapons can be accessed in the back code via `sails.config.weapons`
 
