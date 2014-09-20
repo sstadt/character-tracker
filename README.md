@@ -2,6 +2,10 @@
 
 a [Sails](http://sailsjs.org) application
 
+# To Do
+
+* [scott] verify the controller/model logic is working properly with some test controls
+
 # Setup
 
 	npm install -g sails
@@ -25,7 +29,7 @@ I've set the app to run out of `views/tracker/index.ejs`, and added a create and
 
 # Characters
 
-Feel free to add anything to this list you would like to, anything you think would be appropriate to doing a capabilities demo for an ARM proposal. I added this stuff to get a good base for a few modules; dice roller, create, and edit. We can use components/modules to roll dice, add/update characters, and keep track of character data. I'll get require in asap and we can use modules and ko components interchangeably.
+Feel free to add anything to this list you would like to, anything you think would be appropriate to doing a capabilities demo for an ARM proposal. I added this stuff to get a good base for a few modules; dice roller, create, and edit. We can use components/modules to roll dice, add/update characters, and keep track of character data. I've got require in so we can use modules and ko components interchangeably.
 
 ## statistics 
 
@@ -39,7 +43,7 @@ Feel free to add anything to this list you would like to, anything you think wou
 
 ## classes
 
-Classes can be configured in the `config/classes.js` file, the array of classes can be accessed in the back code via 'sails.config.classes`. There are examples of how to access them on the front end in `site.js`, and on the back end in `views/tracker/index.ejs`.
+Classes can be configured in the `config/classes.js` file, the array of classes can be accessed in the back code via 'sails.config.classes`. There are examples of how to access them on the front end in `site.js`, and on the back end in `views/tracker/index.ejs`. I've also added preliminary controller logic for the basic crud queries, so we can start in on the ko stuff immediately.
 
 * +2 to key statistic - str, dex, vit, int
 * +1 key statistic - str, dex, vit, int
