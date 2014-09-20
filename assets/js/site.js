@@ -1,4 +1,20 @@
-$(function(){
+requirejs.config({
+	deps: ['bootstrap'],
+	paths: {
+		'jquery': 'dependencies/jquery-2.1.1',
+		'lodash': 'dependencies/lodash.compat',
+		'bootstrap': 'dependencies/bootstrap',
+		'knockout': 'dependencies/knockout-3.2.0',
+		'sails': 'dependencies/sails.io'
+	},
+	shim: {
+		'bootstrap': {
+			deps: ['jquery']
+		}
+	}
+});
+
+require(['jquery'], function ($) {
 
 	// call to get classes
 	$.ajax({
