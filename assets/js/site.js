@@ -14,7 +14,64 @@ requirejs.config({
 	}
 });
 
-require(['jquery'], function ($) {
+require(['jquery', 'knockout'], function ($, ko) {
+
+	// character class - no pun intended
+	function Character(data) {
+		var self = this;
+
+		self.name = data.name;
+		self.class = data.class;
+		self.strength = data.strength;
+		self.dexterity = data.dexterity;
+		self.vitality = data.vitality;
+		self.intellect = data.intellect;
+		self.biography = data.biography;
+
+		self.health = ko.computed(function () {
+			var vitalityBonus = Math.floor((12 - data.vitality) / 2);
+			return 10 + vitalityBonus;
+		});
+	}
+
+	function CharacterListViewModel() {
+		var self = this;
+
+		// data
+		self.characters = ko.observableArray([]);
+
+		self.newCharacterName = ko.observable();
+		self.newCharacterClass = ko.observable();
+		self.newCharacterStrength = ko.observable();
+		self.newCharacterDexterity = ko.observable();
+		self.newCharacterVitality = ko.observable();
+		self.newCharacterIntellect = ko.observable();
+		self.newCharacterBiography = ko.observable();
+
+		// operations
+		self.addCharacter = function() {
+			self.tasks.push(new Character({
+				title: this.newTaskText()
+			}));
+
+			self.newCharacterName();
+			self.newCharacterClass(1);
+			self.newCharacterStrength(14);
+			self.newCharacterDexterity(14);
+			self.newCharacterVitality(14);
+			self.newCharacterIntellect(14);
+			self.newCharacterBiography('');
+		};
+
+		// populate initial characters from api
+		$.getJSON('/getcharlist', function (characters) {
+			console.log(characters);
+			var mappedCharacters = $.map(characters, function(c) { return new Character(c) });
+			self.characters(mappedCharacters);
+		});
+	}
+
+	ko.applyBindings(new CharacterListViewModel());
 
 	// call to get classes
 	$.ajax({

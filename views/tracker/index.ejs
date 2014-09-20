@@ -2,42 +2,10 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-8">
-			<p><%= sails.config.weapons[0].name %></p>
-			<p><%= sails.config.classes[0].name %></p>
-
-			<!-- todo: build out a list of characters -->
+			<%- partial('components/charlist') %>
 		</div>
 		<div class="col-md-4">
-			<form role="form" data-bind="submit: addCharacter">
-
-				<!-- New Character Details -->
-				<div class="form-group">
-					<input type="text" class="form-control" placeholder="Name" data-bind="textInput: newCharacterName" />
-					<select class="form-control" data-bind="value: newCharacterClass" />
-						<% sails.config.classes.forEach(function (cls) { %>
-							<option value="<%= cls.id %>"><%= cls.name %></option>
-						<% }) %>
-					</select>
-				</div>
-
-				<!-- New Character Statistics -->
-				<div class="form-group">
-					<input type="text" class="form-control" placeholder="Str" data-bind="textInput: newCharacterStrength" />
-					<input type="text" class="form-control" placeholder="Dex" data-bind="textInput: newCharacterDexterity" />
-					<input type="text" class="form-control" placeholder="Vit" data-bind="textInput: newCharacterVitality" />
-					<input type="text" class="form-control" placeholder="Int" data-bind="textInput: newCharacterIntellect" />
-				</div>
-
-				<!-- New Character Bio -->
-				<div class="form-group">
-					<textarea class="form-control" placeholder="biography" data-bind="textInput: newCharacterBiography"></textarea>
-				</div>
-
-				<!-- Add New Character -->
-				<div class="form-group">
-					<input type="submit" class="form-control" class="btn pull-right" />
-				</div>
-			</form>
+			<%- partial('components/addchar') %>
 		</div>
 	</div>
 </div>
