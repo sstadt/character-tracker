@@ -25,7 +25,7 @@ module.exports = {
 	charlist: function (req, res, next) {
 		Character.find(function foundCharacters (err, characters) {
 			var response = {};
-			
+
 			if (err) {
 				response.err = err;
 			} else {
@@ -39,6 +39,8 @@ module.exports = {
 
 	create: function (req, res, next) {
 
+		console.log('feshong');
+
 		var charObj = {
 			name: req.param('name'),
 			bio: req.param('bio') || '',
@@ -49,13 +51,13 @@ module.exports = {
 			intellect: req.param('intellect'),
 		};
 
-		Character.create(req.param('character'), function characterCreated (err, character) {
+		Character.create(charObj, function characterCreated (err, character) {
 			var response = {};
 
 			if (err) {
 				response.err = err;
 			} else {
-				respnse.success = true;
+				response.success = true;
 				response.character = character;
 			}
 

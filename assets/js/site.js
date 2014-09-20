@@ -42,7 +42,7 @@ require(['lodash', 'jquery', 'knockout'], function (_, $, ko) {
 		self.name = data.name;
 		self.primary = data.primary;
 		self.secondary = data.secondary;
-		self.tertiary = self.tertiary;
+		self.tertiary = data.tertiary;
 	}
 
 	function CharacterListViewModel() {
@@ -62,30 +62,6 @@ require(['lodash', 'jquery', 'knockout'], function (_, $, ko) {
 		self.newCharacterBiography = ko.observable();
 
 		// operations
-		self.addCharacter = function() {
-			var newChar = {
-				name: self.newCharacterName(),
-				class: self.newCharacterClass(),
-				strength: self.newCharacterStrength(),
-				dexterity: self.newCharacterDexterity(),
-				vitality: self.newCharacterVitality(),
-				intellect: self.newCharacterIntellect(),
-				biography: self.newCharacterBiography('')
-			};
-
-			$.post('/character/create', newChar, function (response) {
-				self.characters.push(new Character(response.character));
-
-				self.newCharacterName();
-				self.newCharacterClass(1);
-				self.newCharacterStrength(defaultStatisticValue);
-				self.newCharacterDexterity(defaultStatisticValue);
-				self.newCharacterVitality(defaultStatisticValue);
-				self.newCharacterIntellect(defaultStatisticValue);
-				self.newCharacterBiography('');
-			});
-		};
-
 		self.setNewCharacterClass = function() {
 			var charClass = _.find(self.classes(), function (c) {
 					return c.name === self.newCharacterClass();
@@ -96,9 +72,63 @@ require(['lodash', 'jquery', 'knockout'], function (_, $, ko) {
 			self.newCharacterVitality(getClassBonus('vitality', charClass, self.bonuses) + defaultStatisticValue);
 			self.newCharacterIntellect(getClassBonus('intellect', charClass, self.bonuses) + defaultStatisticValue);
 		};
+
+		self.addCharacter = function() {
+			var newChar = {
+				name: self.newCharacterName(),
+				class: self.newCharacterClass(),
+				strength: self.newCharacterStrength(),
+				dexterity: self.newCharacterDexterity(),
+				vitality: self.newCharacterVitality(),
+				intellect: self.newCharacterIntellect(),
+				biography: self.newCharacterBiography()
+			};
+
+			console.log('-------------------');
+			console.log(self.classes());
+			console.log(self.newCharacterClass());
+			console.log('-------------------');
+
+			$.ajax({
+				type: 'POST',
+				url: '/character/create',
+				dataType: 'json',
+				data: newChar,
+				cache: false,
+				success: function(response){
+					console.log(response);
+					if (response.success) {
+						// success stuff
+						self.characters.push(new Character(response.character));
+
+						self.newCharacterName('');
+						self.newCharacterClass('');
+						self.newCharacterStrength(defaultStatisticValue);
+						self.newCharacterDexterity(defaultStatisticValue);
+						self.newCharacterVitality(defaultStatisticValue);
+						self.newCharacterIntellect(defaultStatisticValue);
+						self.newCharacterBiography('');
+					} else {
+						alert('error');
+						console.log(response.error)
+					}
+				},
+				error: function(xhr) {
+					if (!(xhr.readyState == 0 || xhr.status == 0)) {
+						// error stuff
+						alert('Inernal server error.');
+					}
+				},
+				timeout: function() {
+					// timeout stuff
+					alert("The server is not responding.\n\nCheck your connection and try again.\n\n");
+				}
+			});
+		};
 		
 		// populate class data
 		$.getJSON('/static/classes', function (data) {
+			console.log(data);
 			var mappedClasses = $.map(data.classes, function (c) { return new CharacterClass(c) });
 
 			self.classes(mappedClasses);
@@ -111,6 +141,7 @@ require(['lodash', 'jquery', 'knockout'], function (_, $, ko) {
 
 		// populate initial characters from api
 		$.getJSON('/character/getlist', function (characters) {
+			console.log('character list');
 			console.log(characters);
 
 			var mappedCharacters = $.map(characters, function(c) { return new Character(c) });
@@ -120,15 +151,17 @@ require(['lodash', 'jquery', 'knockout'], function (_, $, ko) {
 	}
 
 	function getClassBonus(statistic, charClass, bonuses) {
-		if (charClass.tertiary === statistic) {
-			return bonuses.tertiary;
-		} else if (charClass.secondary === statistic) {
-			return bonuses.secondary;
-		} else if (charClass.primary === statistic) {
-			return bonuses.primary;
-		} else {
-			return 0;
+		if (charClass) {
+			if (charClass.tertiary === statistic) {
+				return bonuses.tertiary;
+			} else if (charClass.secondary === statistic) {
+				return bonuses.secondary;
+			} else if (charClass.primary === statistic) {
+				return bonuses.primary;
+			}
 		}
+
+		return 0;
 	}
 
 	function getAdjustedStatistic(base, statistic) {

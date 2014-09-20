@@ -48,6 +48,10 @@ module.exports.routes = {
   '/character/getlist': {
     controller: 'character',
     action: 'charlist'
+  },
+  '/character/create': {
+    controller: 'character',
+    action: 'create'
   }
 
   /***************************************************************************

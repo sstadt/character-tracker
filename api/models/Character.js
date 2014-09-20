@@ -37,6 +37,14 @@ module.exports = {
     },
     bio: {
     	type: 'string'
+    },
+    toJSON: function () {
+        var obj = this.toObject();
+
+        delete obj.createdAt;
+        delete obj.updatedAt;
+
+        return obj;
     }
 
   }
