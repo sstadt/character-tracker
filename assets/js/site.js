@@ -1,5 +1,5 @@
 requirejs.config({
-	deps: ['bootstrap'],
+	deps: ['sails', 'bootstrap'],
 	paths: {
 		'jquery': 'dependencies/jquery-2.1.1',
 		'lodash': 'dependencies/lodash.compat',
