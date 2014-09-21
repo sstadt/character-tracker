@@ -4,8 +4,11 @@ a [Sails](http://sailsjs.org) application
 
 # To Do
 
- - [ ] [scott] Verify the controller/model logic is working properly with some test controls
  - [ ] [scott] Set up folder structure for ko application
+ - [x] [scott] Set up character list
+ - [ ] [scott] Set up character view modal
+ - [ ] [scott] Set up character edit modal
+ - [ ] [scott] Componentize as mch as possible
 
 # Setup
 
