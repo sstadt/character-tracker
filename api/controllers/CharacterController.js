@@ -90,6 +90,22 @@ module.exports = {
 				response.success = true;
 				response.character = character;
 			}
+
+			res.json(response);
+		});
+	},
+
+	destroy: function (req, res, next) {
+		Character.destroy(req.param('id'), function (err, character) {
+			var response = {};
+
+			if (err) {
+				response.err = err;
+			} else {
+				response.success = true;
+			}
+
+			res.json(response);
 		});
 	},
 
