@@ -7,7 +7,7 @@ a [Sails](http://sailsjs.org) application
  - [x] [scott] Set up character list
  - [x] [scott] Set up character view modal
  - [x] [scott] Set up character delete functionality
- - [ ] [scott] Set up character edit functionality
+ - [x] [scott] Set up character edit functionality
  - [ ] [scott] Set up folder structure for ko application
  - [ ] [scott] Componentize as much as possible
  - [ ] [scott] Build weapons component

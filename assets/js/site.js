@@ -20,6 +20,13 @@ requirejs.config({
 require(['lodash', 'jquery', 'knockout'], function (_, $, ko) {
   var defaultStatisticValue = 14;
 
+  /**
+   * Get a particular bonus based on a character class
+   * @param  {string} statistic The name of the statistic to retrieve a bonus for
+   * @param  {object} charClass The character class to check bonuses for
+   * @param  {object} bonuses   The list of bonus values to apply
+   * @return {int}              The bonus value
+   */
   function getClassBonus(statistic, charClass, bonuses) {
     var bonus = 0;
 
@@ -36,12 +43,33 @@ require(['lodash', 'jquery', 'knockout'], function (_, $, ko) {
     return bonus;
   }
 
-  function getAdjustedStatistic(base, statistic) {
-    var bonus = Math.floor((statistic - 12) / 2);
+  /**
+   * Get a statistic value adjusted for by a
+   * provided attribute value.
+   * @param  {int} base      The base value of the statistic
+   * @param  {int} attribute The attribute value that adjusts base
+   * @return {int}           The adjusted statistic
+   */
+  function getAdjustedStatistic(base, attribute) {
+    var bonus = Math.floor((attribute - 12) / 2);
     return base + bonus;
   }
 
-  // character
+  /**
+   * Class - Character
+   * 
+   * Contains data associated with a character
+   * 
+   *   id: database id
+   *   name: character name
+   *   charClass: character's class
+   *   strength: attribute
+   *   dexterity: attribute
+   *   vitality: attribute
+   *   intellect: attribute
+   *   bio: short character description
+   *   health(computed): adjusted for vitality
+   */
   function Character(data) {
     var self = this;
 
@@ -59,7 +87,16 @@ require(['lodash', 'jquery', 'knockout'], function (_, $, ko) {
     });
   }
 
-  // character class
+  /**
+   * Class - CharacterClass
+   * 
+   * Contains data associated with a character class
+   * 
+   *   name: name of the class
+   *   primary: largest statistic
+   *   secondary: second largest statistic
+   *   tertiary: lowest statistic
+   */
   function CharacterClass(data) {
     var self = this;
 
@@ -69,8 +106,18 @@ require(['lodash', 'jquery', 'knockout'], function (_, $, ko) {
     self.tertiary = data.tertiary;
   }
 
+  /**
+   * Character List View Model
+   *
+   * Contains the character list data shown on
+   * the index page of the app
+   */
   function CharacterListViewModel() {
+    // cache self so we can use it out of scope
     var self = this;
+
+    /* View Model Data
+    ------------------------------*/
 
     // list data
     self.characters = ko.observableArray([]);
@@ -99,7 +146,10 @@ require(['lodash', 'jquery', 'knockout'], function (_, $, ko) {
     self.selectedCharacterBiography = ko.observable();
     self.selectedCharacterHealth = ko.observable();
 
-    // operations
+    /* View Model Methods
+    ------------------------------*/
+
+    // set the character class for a new character
     self.setNewCharacterClass = function () {
       var selectedClass = _.find(self.classes(), function (c) {
           return c.name === self.newCharacterClass();
@@ -111,6 +161,7 @@ require(['lodash', 'jquery', 'knockout'], function (_, $, ko) {
       self.newCharacterIntellect(getClassBonus('intellect', selectedClass, self.bonuses) + defaultStatisticValue);
     };
 
+    // open the view character modal
     self.viewCharacter = function (character) {
       self.selectedCharacterId(character.id);
       self.selectedCharacterName(character.name);
@@ -123,6 +174,7 @@ require(['lodash', 'jquery', 'knockout'], function (_, $, ko) {
       self.selectedCharacterHealth(character.health());
     };
 
+    // add a new character
     self.addCharacter = function () {
       var newChar = {
         name: self.newCharacterName(),
@@ -142,7 +194,6 @@ require(['lodash', 'jquery', 'knockout'], function (_, $, ko) {
         cache: false,
         success: function (response) {
           if (response.success) {
-            // success stuff
             self.characters.push(new Character(response.character));
 
             self.newCharacterName('');
@@ -159,18 +210,17 @@ require(['lodash', 'jquery', 'knockout'], function (_, $, ko) {
         },
         error: function (xhr) {
           if (!(xhr.readyState === 0 || xhr.status === 0)) {
-            // error stuff
             alert('Inernal server error.');
           }
         },
         timeout: function () {
-          // timeout stuff
           alert("The server is not responding.\n\nCheck your connection and try again.\n\n");
         }
       });
     };
 
-    self.updateCharacter = function (character) {
+    // update an existing character
+    self.updateCharacter = function () {
       var updatedChar = {
         id: self.selectedCharacterId(),
         name: self.selectedCharacterName(),
@@ -194,6 +244,7 @@ require(['lodash', 'jquery', 'knockout'], function (_, $, ko) {
       });
     };
 
+    // remove an existing character
     self.removeCharacter = function (character) {
       if (confirm('Are you sure you want to delete this character?')) {
         io.socket.post('/character/destroy', { id: character.id }, function (response) {
@@ -206,6 +257,9 @@ require(['lodash', 'jquery', 'knockout'], function (_, $, ko) {
         });
       }
     };
+
+    /* Populate initial data
+    ------------------------------*/
 
     // populate class data
     $.getJSON('/static/classes', function (response) {
@@ -243,11 +297,20 @@ require(['lodash', 'jquery', 'knockout'], function (_, $, ko) {
     });
   }
 
+  /* Custom Data Binding
+  ------------------------------*/
+
+  /**
+   * Custom binding for elements which contain the
+   * contenteditable="true" attribute. Gives them
+   * identical behavior to an input element with
+   * the value binding.
+   */
   ko.bindingHandlers.editableText = {
     init: function (element, valueAccessor) {
       $(element).on('blur', function () {
         var observable = valueAccessor();
-        observable( $(this).text() );
+        observable($(this).text());
       });
     },
     update: function (element, valueAccessor) {
@@ -256,5 +319,6 @@ require(['lodash', 'jquery', 'knockout'], function (_, $, ko) {
     }
   };
 
+  // apply character list view model to the dom
   ko.applyBindings(new CharacterListViewModel());
 });

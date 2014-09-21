@@ -55,10 +55,6 @@ module.exports = {
 			if (err) {
 				response.err = err;
 			} else {
-				console.log('');
-				console.log('new character saved:');
-				console.log(character);
-				
 				response.success = true;
 				response.character = character;
 			}
@@ -75,9 +71,6 @@ module.exports = {
 
 		Character.update(req.param('id'), charObj, function characterUpdated (err, character) {
 			var response = {};
-
-			console.log(charObj);
-			console.log(character);
 
 			if (err) {
 				response.err = err;
