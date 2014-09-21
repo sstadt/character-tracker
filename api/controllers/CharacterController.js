@@ -29,8 +29,8 @@ module.exports = {
 			if (err) {
 				response.err = err;
 			} else {
-				res.success = true;
-				res.characters = characters;
+				response.success = true;
+				response.characters = characters;
 			}
 
 			res.json(response);
@@ -39,10 +39,9 @@ module.exports = {
 
 	create: function (req, res, next) {
 
-		console.log('feshong');
-
 		var charObj = {
 			name: req.param('name'),
+			charClass: req.param('charClass'),
 			bio: req.param('bio') || '',
 			health: req.param('health'),
 			strength: req.param('strength'),
@@ -57,6 +56,10 @@ module.exports = {
 			if (err) {
 				response.err = err;
 			} else {
+				console.log('');
+				console.log('new character saved:');
+				console.log(character);
+				
 				response.success = true;
 				response.character = character;
 			}
@@ -69,6 +72,7 @@ module.exports = {
 
 		var charObj = {
 			name: req.param('name'),
+			charClass: req.param('charClass'),
 			bio: req.param('bio') || '',
 			health: req.param('health'),
 			strength: req.param('strength'),
@@ -86,6 +90,12 @@ module.exports = {
 				response.success = true;
 				response.character = character;
 			}
+		});
+	},
+
+	dropall: function (req, res, next) {
+		Character.destroy(function characterDestroyed (err) {
+			res.send(200);
 		});
 	}
 };

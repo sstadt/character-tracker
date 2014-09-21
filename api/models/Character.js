@@ -16,6 +16,10 @@ module.exports = {
       type: 'string',
       required: true
     },
+    charClass: {
+        type: 'string',
+        required: true
+    },
     strength: {
     	type: 'integer',
     	required: true

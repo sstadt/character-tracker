@@ -45,6 +45,11 @@ module.exports.routes = {
     action: 'weapons'
   },
 
+  '/character/dropall': {
+    controller: 'character',
+    action: 'dropall'
+  },
+
   '/character/getlist': {
     controller: 'character',
     action: 'charlist'
