@@ -32,10 +32,12 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
+  // home page
   '/': {
     view: 'tracker/index'
   },
 
+  // hard coded data
   '/static/classes': {
     controller: 'static',
     action: 'classes'
@@ -45,18 +47,14 @@ module.exports.routes = {
     action: 'weapons'
   },
 
-  '/character/dropall': {
-    controller: 'character',
-    action: 'dropall'
-  },
-
+  // characters
   '/character/getlist': {
     controller: 'character',
     action: 'charlist'
   },
-  '/character/create': {
+  '/character/dropall': {
     controller: 'character',
-    action: 'create'
+    action: 'dropall'
   }
 
   /***************************************************************************

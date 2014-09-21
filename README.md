@@ -4,11 +4,14 @@ a [Sails](http://sailsjs.org) application
 
 # To Do
 
- - [ ] [scott] Set up folder structure for ko application
  - [x] [scott] Set up character list
- - [ ] [scott] Set up character view modal
- - [ ] [scott] Set up character edit modal
- - [ ] [scott] Componentize as mch as possible
+ - [x] [scott] Set up character view modal
+ - [x] [scott] Set up character delete functionality
+ - [ ] [scott] Set up character edit functionality
+ - [ ] [scott] Set up folder structure for ko application
+ - [ ] [scott] Componentize as much as possible
+ - [ ] [scott] Build weapons component
+ - [ ] [scott] Build level up component
 
 # Setup
 

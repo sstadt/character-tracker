@@ -38,11 +38,10 @@ module.exports = {
 	},
 
 	create: function (req, res, next) {
-
 		var charObj = {
 			name: req.param('name'),
 			charClass: req.param('charClass'),
-			bio: req.param('bio') || '',
+			bio: req.param('bio'),
 			health: req.param('health'),
 			strength: req.param('strength'),
 			dexterity: req.param('dexterity'),
@@ -69,20 +68,16 @@ module.exports = {
 	},
 
 	update: function (req, res, next) {
-
 		var charObj = {
 			name: req.param('name'),
-			charClass: req.param('charClass'),
-			bio: req.param('bio') || '',
-			health: req.param('health'),
-			strength: req.param('strength'),
-			dexterity: req.param('dexterity'),
-			vitality: req.param('vitality'),
-			intellect: req.param('intellect'),
+			bio: req.param('bio')
 		};
 
 		Character.update(req.param('id'), charObj, function characterUpdated (err, character) {
 			var response = {};
+
+			console.log(charObj);
+			console.log(character);
 
 			if (err) {
 				response.err = err;

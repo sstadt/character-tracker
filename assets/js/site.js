@@ -52,7 +52,7 @@ require(['lodash', 'jquery', 'knockout'], function (_, $, ko) {
     self.dexterity = data.dexterity;
     self.vitality = data.vitality;
     self.intellect = data.intellect;
-    self.biography = data.biography;
+    self.bio = data.bio;
 
     self.health = ko.computed(function () {
       return getAdjustedStatistic(10, data.vitality);
@@ -89,6 +89,7 @@ require(['lodash', 'jquery', 'knockout'], function (_, $, ko) {
     self.newCharacterBiography = ko.observable();
 
     // selected characer date
+    self.selectedCharacterId = ko.observable();
     self.selectedCharacterName = ko.observable();
     self.selectedCharacterClass = ko.observable();
     self.selectedCharacterStrength = ko.observable();
@@ -108,6 +109,18 @@ require(['lodash', 'jquery', 'knockout'], function (_, $, ko) {
       self.newCharacterDexterity(getClassBonus('dexterity', selectedClass, self.bonuses) + defaultStatisticValue);
       self.newCharacterVitality(getClassBonus('vitality', selectedClass, self.bonuses) + defaultStatisticValue);
       self.newCharacterIntellect(getClassBonus('intellect', selectedClass, self.bonuses) + defaultStatisticValue);
+    };
+
+    self.viewCharacter = function (character) {
+      self.selectedCharacterId(character.id);
+      self.selectedCharacterName(character.name);
+      self.selectedCharacterClass(character.charClass);
+      self.selectedCharacterStrength(character.strength);
+      self.selectedCharacterDexterity(character.dexterity);
+      self.selectedCharacterVitality(character.vitality);
+      self.selectedCharacterIntellect(character.intellect);
+      self.selectedCharacterBiography(character.bio);
+      self.selectedCharacterHealth(character.health());
     };
 
     self.addCharacter = function () {
@@ -157,15 +170,28 @@ require(['lodash', 'jquery', 'knockout'], function (_, $, ko) {
       });
     };
 
-    self.viewCharacter = function (character) {
-      self.selectedCharacterName(character.name);
-      self.selectedCharacterClass(character.charClass);
-      self.selectedCharacterStrength(character.strength);
-      self.selectedCharacterDexterity(character.dexterity);
-      self.selectedCharacterVitality(character.vitality);
-      self.selectedCharacterIntellect(character.intellect);
-      self.selectedCharacterBiography(character.bio);
-      self.selectedCharacterHealth(character.health());
+    self.updateCharacter = function (character) {
+      var updatedChar = {
+        id: self.selectedCharacterId(),
+        name: self.selectedCharacterName(),
+        bio: self.selectedCharacterBiography()
+      };
+
+      io.socket.post('/character/update', updatedChar, function (response) {
+        if (response.success) {
+          // update self.characters
+          var charIndex = _.findIndex(self.characters(), function (c) {
+            return c.id === response.character[0].id;
+          });
+
+          self.characters.replace(self.characters()[charIndex], new Character(response.character[0]));
+
+          $('#characterModal').modal('hide');
+        } else {
+          alert('error');
+          console.log(response.err);
+        }
+      });
     };
 
     self.removeCharacter = function (character) {
@@ -216,6 +242,19 @@ require(['lodash', 'jquery', 'knockout'], function (_, $, ko) {
       }
     });
   }
+
+  ko.bindingHandlers.editableText = {
+    init: function (element, valueAccessor) {
+      $(element).on('blur', function () {
+        var observable = valueAccessor();
+        observable( $(this).text() );
+      });
+    },
+    update: function (element, valueAccessor) {
+      var value = ko.utils.unwrapObservable(valueAccessor());
+      $(element).text(value);
+    }
+  };
 
   ko.applyBindings(new CharacterListViewModel());
 });
