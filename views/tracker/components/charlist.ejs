@@ -22,8 +22,18 @@
 			<td data-bind="text: intellect"></td>
 			<td data-bind="text: health"></td>
 			<td>
-				<button class="btn btn-xs btn-warning">Edit</button>
-				<button class="btn btn-xs btn-danger">Delete</button>
+				<input type="hidden" data-bind="value: id" />
+				<div class="pull-right">
+					<button class="btn btn-xs btn-primary" data-bind="click: $parent.viewCharacter">
+						<i class="glyphicon glyphicon-folder-open"></i>
+					</button>
+					<button class="btn btn-xs btn-primary" data-bind="click: $parent.editCharacter">
+						<i class="glyphicon glyphicon-edit"></i>
+					</button>
+					<button class="btn btn-xs btn-danger">
+						<i class="glyphicon glyphicon-trash" data-bind="click: $parent.removeCharacter"></i>
+					</button>
+				</div>
 			</td>
 		</tr>
 	</tbody>

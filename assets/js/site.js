@@ -118,7 +118,6 @@ require(['lodash', 'jquery', 'knockout'], function (_, $, ko) {
         data: newChar,
         cache: false,
         success: function (response) {
-          console.log(response);
           if (response.success) {
             // success stuff
             self.characters.push(new Character(response.character));
@@ -146,6 +145,18 @@ require(['lodash', 'jquery', 'knockout'], function (_, $, ko) {
           alert("The server is not responding.\n\nCheck your connection and try again.\n\n");
         }
       });
+    };
+
+    self.viewCharacter = function (character) {
+      console.log(character);
+    };
+
+    self.editCharacter = function (character) {
+      console.log(character);
+    };
+
+    self.removeCharacter = function (character) {
+      console.log(character);
     };
 
     // populate class data
