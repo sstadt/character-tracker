@@ -40,20 +40,17 @@ Feel free to add anything to this list you would like to, anything you think wou
 
 ## statistics 
 
-* strength - roll/assign
-* dexterity - roll/assign
-* vitality - roll/assign
-* intellect - roll/assign
-* health - starts at 8, increased by vitality
+* strength - increased by class bonuses
+* dexterity - increased by class bonuses
+* vitality - increased by class bonuses
+* intellect - increased by class bonuses
+* health - starts at 10, increased by vitality
 * bio - editable
 * name - editable
 
 ## classes
 
-Classes can be configured in the `config/classes.js` file, the array of classes can be accessed in the back code via `sails.config.classes`. There are examples of how to access them on the front end in `site.js`, and on the back end in `views/tracker/index.ejs`. I've also added preliminary controller logic for the basic crud queries, so we can start in on the ko stuff immediately.
-
-* +2 to key statistic - str, dex, vit, int
-* +1 key statistic - str, dex, vit, int
+Classes can be configured in the `config/classes.js` file, the array of classes can be accessed in the back code via `sails.config.classes`. There are examples of how to access them on the front end in `site.js`, and on the back end in `views/tracker/index.ejs`.
 
 ## weapons
 
