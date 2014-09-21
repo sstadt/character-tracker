@@ -88,6 +88,16 @@ require(['lodash', 'jquery', 'knockout'], function (_, $, ko) {
     self.newCharacterIntellect = ko.observable(defaultStatisticValue);
     self.newCharacterBiography = ko.observable();
 
+    // selected characer date
+    self.selectedCharacterName = ko.observable();
+    self.selectedCharacterClass = ko.observable();
+    self.selectedCharacterStrength = ko.observable();
+    self.selectedCharacterDexterity = ko.observable();
+    self.selectedCharacterVitality = ko.observable();
+    self.selectedCharacterIntellect = ko.observable();
+    self.selectedCharacterBiography = ko.observable();
+    self.selectedCharacterHealth = ko.observable();
+
     // operations
     self.setNewCharacterClass = function () {
       var selectedClass = _.find(self.classes(), function (c) {
@@ -148,11 +158,14 @@ require(['lodash', 'jquery', 'knockout'], function (_, $, ko) {
     };
 
     self.viewCharacter = function (character) {
-      console.log(character);
-    };
-
-    self.editCharacter = function (character) {
-      console.log(character);
+      self.selectedCharacterName(character.name);
+      self.selectedCharacterClass(character.charClass);
+      self.selectedCharacterStrength(character.strength);
+      self.selectedCharacterDexterity(character.dexterity);
+      self.selectedCharacterVitality(character.vitality);
+      self.selectedCharacterIntellect(character.intellect);
+      self.selectedCharacterBiography(character.bio);
+      self.selectedCharacterHealth(character.health());
     };
 
     self.removeCharacter = function (character) {

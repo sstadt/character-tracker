@@ -1,0 +1,24 @@
+<div id="characterModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title">Character Details For <span data-bind="text: selectedCharacterName"></span></h4>
+			</div>
+			<div class="modal-body">
+				<p data-bind="text: selectedCharacterBiography"></p>
+				<ul>
+					<li>Strength: <span data-bind="text: selectedCharacterStrength"></span></li>
+					<li>Dexterity: <span data-bind="text: selectedCharacterDexterity"></span></li>
+					<li>Vitality: <span data-bind="text: selectedCharacterVitality"></span></li>
+					<li>Intellect: <span data-bind="text: selectedCharacterIntellect"></span></li>
+					<li>Vitality: <span data-bind="text: selectedCharacterHealth"></span></li>
+				</ul>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
