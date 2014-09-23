@@ -1,4 +1,4 @@
-define(function () {
+define('statistics', function () {
 	'use strict';
 
   /**
@@ -13,7 +13,32 @@ define(function () {
     return base + bonus;
   }
 
+  /**
+   * Get a particular bonus based on a character class
+   * @param  {string} statistic The name of the statistic to retrieve a bonus for
+   * @param  {object} charClass The character class to check bonuses for
+   * @param  {object} bonuses   The list of bonus values to apply
+   * @return {int}              The bonus value
+   */
+  function getClassBonus(statistic, charClass, bonuses) {
+    var bonus = 0;
+
+    if (charClass) {
+      if (charClass.tertiary === statistic) {
+        bonus = bonuses.tertiary;
+      } else if (charClass.secondary === statistic) {
+        bonus = bonuses.secondary;
+      } else if (charClass.primary === statistic) {
+        bonus = bonuses.primary;
+      }
+    }
+
+    return bonus;
+  }
+
   return {
-  	getAdjusted: getAdjustedStatistic
+  	defaultStatisticValue: 14,
+  	getAdjusted: getAdjustedStatistic,
+  	getClassBonus: getClassBonus
   };
 });

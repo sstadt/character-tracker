@@ -3,10 +3,7 @@
 
 requirejs.config({
   deps: [
-    // vendor
-    'sails', 'bootstrap',
-    // classes
-    'Character', 'CharacterClass'
+    'sails', 'bootstrap', 'statistics'
   ],
   paths: {
     // plugins
@@ -26,56 +23,15 @@ requirejs.config({
   shim: {
     'bootstrap': {
       deps: ['jquery']
+    },
+    'statistics': {
+      exports: 'statistics'
     }
   }
 });
 
-require(['lodash', 'jquery', 'knockout', 'Character'], function (_, $, ko, Character) {
+require(['lodash', 'jquery', 'knockout', 'Character', 'CharacterClass', 'statistics'], function (_, $, ko, Character, CharacterClass, statistics) {
   'use strict';
-
-  var defaultStatisticValue = 14;
-
-  /**
-   * Get a particular bonus based on a character class
-   * @param  {string} statistic The name of the statistic to retrieve a bonus for
-   * @param  {object} charClass The character class to check bonuses for
-   * @param  {object} bonuses   The list of bonus values to apply
-   * @return {int}              The bonus value
-   */
-  function getClassBonus(statistic, charClass, bonuses) {
-    var bonus = 0;
-
-    if (charClass) {
-      if (charClass.tertiary === statistic) {
-        bonus = bonuses.tertiary;
-      } else if (charClass.secondary === statistic) {
-        bonus = bonuses.secondary;
-      } else if (charClass.primary === statistic) {
-        bonus = bonuses.primary;
-      }
-    }
-
-    return bonus;
-  }
-
-  /**
-   * Class - CharacterClass
-   * 
-   * Contains data associated with a character class
-   * 
-   *   name: name of the class
-   *   primary: largest statistic
-   *   secondary: second largest statistic
-   *   tertiary: lowest statistic
-   */
-  function CharacterClass(data) {
-    var self = this;
-
-    self.name = data.name;
-    self.primary = data.primary;
-    self.secondary = data.secondary;
-    self.tertiary = data.tertiary;
-  }
 
   /**
    * Character List View Model
@@ -100,10 +56,10 @@ require(['lodash', 'jquery', 'knockout', 'Character'], function (_, $, ko, Chara
     // new character data
     self.newCharacterName = ko.observable();
     self.newCharacterClass = ko.observable();
-    self.newCharacterStrength = ko.observable(defaultStatisticValue);
-    self.newCharacterDexterity = ko.observable(defaultStatisticValue);
-    self.newCharacterVitality = ko.observable(defaultStatisticValue);
-    self.newCharacterIntellect = ko.observable(defaultStatisticValue);
+    self.newCharacterStrength = ko.observable(statistics.defaultStatisticValue);
+    self.newCharacterDexterity = ko.observable(statistics.defaultStatisticValue);
+    self.newCharacterVitality = ko.observable(statistics.defaultStatisticValue);
+    self.newCharacterIntellect = ko.observable(statistics.defaultStatisticValue);
     self.newCharacterBiography = ko.observable();
 
     // selected characer date
@@ -126,10 +82,10 @@ require(['lodash', 'jquery', 'knockout', 'Character'], function (_, $, ko, Chara
           return c.name === self.newCharacterClass();
         });
 
-      self.newCharacterStrength(getClassBonus('strength', selectedClass, self.bonuses) + defaultStatisticValue);
-      self.newCharacterDexterity(getClassBonus('dexterity', selectedClass, self.bonuses) + defaultStatisticValue);
-      self.newCharacterVitality(getClassBonus('vitality', selectedClass, self.bonuses) + defaultStatisticValue);
-      self.newCharacterIntellect(getClassBonus('intellect', selectedClass, self.bonuses) + defaultStatisticValue);
+      self.newCharacterStrength(statistics.getClassBonus('strength', selectedClass, self.bonuses) + statistics.defaultStatisticValue);
+      self.newCharacterDexterity(statistics.getClassBonus('dexterity', selectedClass, self.bonuses) + statistics.defaultStatisticValue);
+      self.newCharacterVitality(statistics.getClassBonus('vitality', selectedClass, self.bonuses) + statistics.defaultStatisticValue);
+      self.newCharacterIntellect(statistics.getClassBonus('intellect', selectedClass, self.bonuses) + statistics.defaultStatisticValue);
     };
 
     // open the view character modal
@@ -169,10 +125,10 @@ require(['lodash', 'jquery', 'knockout', 'Character'], function (_, $, ko, Chara
 
             self.newCharacterName('');
             self.newCharacterClass('');
-            self.newCharacterStrength(defaultStatisticValue);
-            self.newCharacterDexterity(defaultStatisticValue);
-            self.newCharacterVitality(defaultStatisticValue);
-            self.newCharacterIntellect(defaultStatisticValue);
+            self.newCharacterStrength(statistics.defaultStatisticValue);
+            self.newCharacterDexterity(statistics.defaultStatisticValue);
+            self.newCharacterVitality(statistics.defaultStatisticValue);
+            self.newCharacterIntellect(statistics.defaultStatisticValue);
             self.newCharacterBiography('');
           } else {
             alert('error');

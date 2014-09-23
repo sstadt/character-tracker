@@ -8,8 +8,10 @@ a [Sails](http://sailsjs.org) application
  - [x] [scott] Set up character view modal
  - [x] [scott] Set up character delete functionality
  - [x] [scott] Set up character edit functionality
- - [ ] [scott] Set up folder structure for ko application
- - [ ] [scott] Componentize as much as possible
+ - [x] [scott] Set up folder structure for ko application
+ - [ ] [scott] Detach require js config from site.js
+ - [ ] [scott] Split off the character list as a component
+ - [ ] [scott] Split off the character creater as a component
  - [ ] [scott] Build weapons component
  - [ ] [scott] Build level up component
 
