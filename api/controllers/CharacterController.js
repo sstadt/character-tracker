@@ -6,22 +6,6 @@
  */
 
 module.exports = {
-	index: function (req, res, next) {
-		res.view();
-	},
-
-	show: function (req, res, next) {
-		Character.findOne(req.param('id'), function characterFound (err, character) {
-			if (err) {
-				next(err);
-			} else {
-				res.view({
-					character: character
-				});
-			}
-		});
-	},
-
 	charlist: function (req, res, next) {
 		Character.find(function foundCharacters (err, characters) {
 			var response = {};

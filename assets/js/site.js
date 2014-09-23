@@ -2,13 +2,26 @@
 /*globals requirejs, alert, confirm, io*/
 
 requirejs.config({
-  deps: ['sails', 'bootstrap'],
+  deps: [
+    // vendor
+    'sails', 'bootstrap',
+    // classes
+    'Character', 'CharacterClass'
+  ],
   paths: {
-    'jquery': 'dependencies/jquery-2.1.1',
-    'lodash': 'dependencies/lodash.compat',
-    'bootstrap': 'dependencies/bootstrap',
-    'knockout': 'dependencies/knockout-3.2.0',
-    'sails': 'dependencies/sails.io'
+    // plugins
+    'text': 'plugins/text',
+    // vendor
+    'jquery': 'libs/jquery-2.1.1',
+    'lodash': 'libs/lodash.compat',
+    'bootstrap': 'libs/bootstrap',
+    'knockout': 'libs/knockout-3.2.0',
+    'sails': 'libs/sails.io',
+    // classes
+    'Character': 'classes/Character',
+    'CharacterClass': 'classes/CharacterClass',
+    // util
+    'statistics': 'util/statistics'
   },
   shim: {
     'bootstrap': {
@@ -17,7 +30,9 @@ requirejs.config({
   }
 });
 
-require(['lodash', 'jquery', 'knockout'], function (_, $, ko) {
+require(['lodash', 'jquery', 'knockout', 'Character'], function (_, $, ko, Character) {
+  'use strict';
+
   var defaultStatisticValue = 14;
 
   /**
@@ -41,50 +56,6 @@ require(['lodash', 'jquery', 'knockout'], function (_, $, ko) {
     }
 
     return bonus;
-  }
-
-  /**
-   * Get a statistic value adjusted for by a
-   * provided attribute value.
-   * @param  {int} base      The base value of the statistic
-   * @param  {int} attribute The attribute value that adjusts base
-   * @return {int}           The adjusted statistic
-   */
-  function getAdjustedStatistic(base, attribute) {
-    var bonus = Math.floor((attribute - 12) / 2);
-    return base + bonus;
-  }
-
-  /**
-   * Class - Character
-   * 
-   * Contains data associated with a character
-   * 
-   *   id: database id
-   *   name: character name
-   *   charClass: character's class
-   *   strength: attribute
-   *   dexterity: attribute
-   *   vitality: attribute
-   *   intellect: attribute
-   *   bio: short character description
-   *   health(computed): adjusted for vitality
-   */
-  function Character(data) {
-    var self = this;
-
-    self.id = data.id;
-    self.name = data.name;
-    self.charClass = data.charClass;
-    self.strength = data.strength;
-    self.dexterity = data.dexterity;
-    self.vitality = data.vitality;
-    self.intellect = data.intellect;
-    self.bio = data.bio;
-
-    self.health = ko.computed(function () {
-      return getAdjustedStatistic(10, data.vitality);
-    });
   }
 
   /**
