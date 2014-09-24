@@ -3,23 +3,22 @@
 
 requirejs.config({
   deps: [
-    // vendor
-    'sails', 'bootstrap',
-    // classes
-    'Character', 'CharacterClass'
+    'sails', 'bootstrap'
   ],
   paths: {
     // plugins
     'text': 'plugins/text',
     // vendor
-    'jquery': 'dependencies/jquery-2.1.1',
-    'lodash': 'dependencies/lodash.compat',
-    'bootstrap': 'dependencies/bootstrap',
-    'knockout': 'dependencies/knockout-3.2.0',
-    'sails': 'dependencies/sails.io'
+    'jquery': 'vendor/jquery-2.1.1',
+    'lodash': 'vendor/lodash.compat',
+    'bootstrap': 'vendor/bootstrap',
+    'knockout': 'vendor/knockout-3.2.0',
+    'sails': 'vendor/sails.io',
     // classes
-    'Character': 'classes/Character',
-    'CharacterClass': 'classes/CharacterClass'
+    'Character': 'lib/classes/Character',
+    'CharacterClass': 'lib/classes/CharacterClass',
+    // util
+    'statistics': 'lib/statistics'
   },
   shim: {
     'bootstrap': {

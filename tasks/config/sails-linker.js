@@ -18,7 +18,7 @@ module.exports = function(grunt) {
 			options: {
 				startTag: '<!--SCRIPTS-->',
 				endTag: '<!--SCRIPTS END-->',
-				fileTmpl: '<script src="/js/libs/require.js" data-main="%s"></script>',
+				fileTmpl: '<script src="/js/vendor/require.js" data-main="%s"></script>',
 				appRoot: '.tmp/public'
 			},
 			files: {
