@@ -1,7 +1,7 @@
 /*jslint browser: true*/
 /*globals requirejs, alert, confirm, io*/
 
-require(['lodash', 'jquery', 'knockout', 'Character'], function (_, $, ko, Character) {
+require(['jquery', 'knockout', 'Character'], function ($, ko, Character) {
   'use strict';
 
   /**
@@ -19,58 +19,59 @@ require(['lodash', 'jquery', 'knockout', 'Character'], function (_, $, ko, Chara
 
     // list data
     self.characters = ko.observableArray([]);
+    self.selectedCharacter = ko.observable();
 
     // selected characer date
     self.selectedCharacterId = ko.observable();
-    self.selectedCharacterName = ko.observable();
-    self.selectedCharacterClass = ko.observable();
-    self.selectedCharacterStrength = ko.observable();
-    self.selectedCharacterDexterity = ko.observable();
-    self.selectedCharacterVitality = ko.observable();
-    self.selectedCharacterIntellect = ko.observable();
-    self.selectedCharacterBiography = ko.observable();
-    self.selectedCharacterHealth = ko.observable();
+    // self.selectedCharacterName = ko.observable();
+    // self.selectedCharacterClass = ko.observable();
+    // self.selectedCharacterStrength = ko.observable();
+    // self.selectedCharacterDexterity = ko.observable();
+    // self.selectedCharacterVitality = ko.observable();
+    // self.selectedCharacterIntellect = ko.observable();
+    // self.selectedCharacterBiography = ko.observable();
+    // self.selectedCharacterHealth = ko.observable();
 
     /* View Model Methods
     ------------------------------*/
 
     // open the view character modal
     self.viewCharacter = function (character) {
-      self.selectedCharacterId(character.id);
-      self.selectedCharacterName(character.name);
-      self.selectedCharacterClass(character.charClass);
-      self.selectedCharacterStrength(character.strength);
-      self.selectedCharacterDexterity(character.dexterity);
-      self.selectedCharacterVitality(character.vitality);
-      self.selectedCharacterIntellect(character.intellect);
-      self.selectedCharacterBiography(character.bio);
-      self.selectedCharacterHealth(character.health());
+      self.selectedCharacter(character);
+      // self.selectedCharacterName(character.name);
+      // self.selectedCharacterClass(character.charClass);
+      // self.selectedCharacterStrength(character.strength);
+      // self.selectedCharacterDexterity(character.dexterity);
+      // self.selectedCharacterVitality(character.vitality);
+      // self.selectedCharacterIntellect(character.intellect);
+      // self.selectedCharacterBiography(character.bio);
+      // self.selectedCharacterHealth(character.health());
     };
 
     // update an existing character
-    self.updateCharacter = function () {
-      var updatedChar = {
-        id: self.selectedCharacterId(),
-        name: self.selectedCharacterName(),
-        bio: self.selectedCharacterBiography()
-      };
+    // self.updateCharacter = function () {
+    //   var updatedChar = {
+    //     id: self.selectedCharacterId(),
+    //     name: self.selectedCharacterName(),
+    //     bio: self.selectedCharacterBiography()
+    //   };
 
-      io.socket.post('/character/update', updatedChar, function (response) {
-        if (response.success) {
-          // update self.characters
-          var charIndex = _.findIndex(self.characters(), function (c) {
-            return c.id === response.character[0].id;
-          });
+    //   io.socket.post('/character/update', updatedChar, function (response) {
+    //     if (response.success) {
+    //       // update self.characters
+    //       var charIndex = _.findIndex(self.characters(), function (c) {
+    //         return c.id === response.character[0].id;
+    //       });
 
-          self.characters.replace(self.characters()[charIndex], new Character(response.character[0]));
+    //       self.characters.replace(self.characters()[charIndex], new Character(response.character[0]));
 
-          $('#characterModal').modal('hide');
-        } else {
-          alert('error');
-          console.log(response.err);
-        }
-      });
-    };
+    //       $('#characterModal').modal('hide');
+    //     } else {
+    //       alert('error');
+    //       console.log(response.err);
+    //     }
+    //   });
+    // };
 
     // remove an existing character
     self.removeCharacter = function (character) {
@@ -106,32 +107,11 @@ require(['lodash', 'jquery', 'knockout', 'Character'], function (_, $, ko, Chara
     });
   }
 
-  /* Custom Data Binding
-  ------------------------------*/
-
-  /**
-   * Custom binding for elements which contain the
-   * contenteditable="true" attribute. Gives them
-   * identical behavior to an input element with
-   * the value binding.
-   */
-  ko.bindingHandlers.editableText = {
-    init: function (element, valueAccessor) {
-      $(element).on('blur', function () {
-        var observable = valueAccessor();
-        observable($(this).text());
-      });
-    },
-    update: function (element, valueAccessor) {
-      var value = ko.utils.unwrapObservable(valueAccessor());
-      $(element).text(value);
-    }
-  };
-
   /* Component Registration
   ------------------------------*/
 
   ko.components.register('character-creater', { require: 'components/character-creater/component' });
+  ko.components.register('character-viewer', { require: 'components/character-viewer/component' });
 
   // apply character list view model to the dom
   ko.applyBindings(new CharacterListViewModel());

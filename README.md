@@ -11,6 +11,7 @@ a [Sails](http://sailsjs.org) application
  - [x] [scott] Set up folder structure for ko application
  - [x] [scott] Detach require js config from site.js
  - [x] [scott] Split off the character creater as a component
+ - [ ] [scott] Split off the character viewer as a component
  - [ ] [scott] Split off the character list as a component
  - [ ] [scott] Build weapons component
  - [ ] [scott] Build level up component
