@@ -48,6 +48,18 @@ requirejs.config({
         $(element).text(value);
       }
     };
+
+    /**
+     * Custom binding for jquery slide down
+     * animation on element creation
+     */
+    ko.bindingHandlers.slideDown = {
+      init: function (element) {
+        if (element.nodeType === 1) {
+          $(element).hide().slideDown();
+        }
+      }
+    };
   }
 });
 
