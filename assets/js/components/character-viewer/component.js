@@ -10,9 +10,11 @@
 
 define([
   'jquery',
+  'lodash',
+  'knockout',
   'Character',
   'text!./template.html'
-], function ($, Character, html) {
+], function ($, _, ko, Character, html) {
   'use strict';
 
   /* View Model
@@ -24,6 +26,14 @@ define([
 
     // selected character data
     this.selectedCharacter = params.selectedCharacter;
+    this.selectedCharacterName = ko.observable();
+    this.selectedCharacterBiography = ko.observable();
+
+    // subscribe to selectedCharacter for updates
+    this.selectedCharacter.subscribe(function (selectedCharacter) {
+      this.selectedCharacterName(selectedCharacter.name);
+      this.selectedCharacterBiography(selectedCharacter.bio);
+    }, this);
   }
 
   /* View Model Methods
@@ -33,24 +43,32 @@ define([
   CharacterViewerViewModel.prototype.updateCharacter = function () {
     var updatedChar = {
       id: this.selectedCharacter().id,
-      name: this.selectedCharacter().name,
-      bio: this.selectedCharacter().bio
+      name: this.selectedCharacterName,
+      bio: this.selectedCharacterBiography
     };
 
-    io.socket.post('/character/update', updatedChar, function (response) {
-      if (response.success) {
-        // update self.characters
-        var charIndex = _.findIndex(this.characters(), function (c) {
-          return c.id === response.character[0].id;
-        });
+    $.ajax({
+      context: this,
+      type: 'POST',
+      url: '/character/update',
+      dataType: 'json',
+      data: updatedChar,
+      cache: false,
+      success: function (response) {
+        if (response.success) {
+          // update self.characters
+          var charIndex = _.findIndex(this.characters(), function (c) {
+            return c.id === response.character[0].id;
+          });
 
-        this.characters.replace(this.characters()[charIndex], new Character(response.character[0]));
+          this.characters.replace(this.characters()[charIndex], new Character(response.character[0]));
 
-        $('#characterModal').modal('hide');
-      } else {
-        alert('error');
-        console.log(response.err);
-      }
+          $('#characterModal').modal('hide');
+        } else {
+          alert('error');
+          console.log(response.err);
+        }
+      },
     });
   };
 
