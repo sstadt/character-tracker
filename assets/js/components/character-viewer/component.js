@@ -1,5 +1,5 @@
 /*jslint browser: true*/
-/*globals requirejs, define, alert, confirm, io*/
+/*globals define, alert, confirm*/
 
 /**
  * Character Viewer Component
@@ -17,62 +17,58 @@ define([
 ], function ($, _, ko, Character, html) {
   'use strict';
 
-  /* View Model
-  ------------------------------*/
-
   function CharacterViewerViewModel(params) {
+    // cache this to prevent potential conflicts
+    var self = this;
+
     // character list
-    this.characters = params.characterList;
+    self.characters = params.characterList;
 
     // selected character data
-    this.selectedCharacter = params.selectedCharacter;
-    this.selectedCharacterName = ko.observable();
-    this.selectedCharacterBiography = ko.observable();
+    self.selectedCharacter = params.selectedCharacter;
+    self.selectedCharacterName = ko.observable();
+    self.selectedCharacterBiography = ko.observable();
 
     // subscribe to selectedCharacter for updates
-    this.selectedCharacter.subscribe(function (selectedCharacter) {
-      this.selectedCharacterName(selectedCharacter.name);
-      this.selectedCharacterBiography(selectedCharacter.bio);
-    }, this);
-  }
-
-  /* View Model Methods
-  ------------------------------*/
-
-  // update an existing character
-  CharacterViewerViewModel.prototype.updateCharacter = function () {
-    // set up the updated character object for sails
-    var updatedChar = {
-      id: this.selectedCharacter().id,
-      name: this.selectedCharacterName,
-      bio: this.selectedCharacterBiography
-    };
-
-    // post character updates to sails
-    $.ajax({
-      context: this,
-      type: 'POST',
-      url: '/character/update',
-      dataType: 'json',
-      data: updatedChar,
-      cache: false,
-      success: function (response) {
-        if (response.success) {
-          // update self.characters
-          var charIndex = _.findIndex(this.characters(), function (c) {
-            return c.id === response.character[0].id;
-          });
-
-          this.characters.replace(this.characters()[charIndex], new Character(response.character[0]));
-
-          $('#characterModal').modal('hide');
-        } else {
-          alert('error');
-          console.log(response.err);
-        }
-      },
+    self.selectedCharacter.subscribe(function (selectedCharacter) {
+      self.selectedCharacterName(selectedCharacter.name);
+      self.selectedCharacterBiography(selectedCharacter.bio);
     });
-  };
+
+    // update an existing character
+    self.updateCharacter = function () {
+      // set up the updated character object for sails
+      var updatedChar = {
+        id: self.selectedCharacter().id,
+        name: self.selectedCharacterName,
+        bio: self.selectedCharacterBiography
+      };
+
+      // post character updates to sails
+      $.ajax({
+        type: 'POST',
+        url: '/character/update',
+        dataType: 'json',
+        data: updatedChar,
+        cache: false,
+        success: function (response) {
+          if (response.success) {
+            // update self.characters
+            var charIndex = _.findIndex(self.characters(), function (c) {
+              return c.id === response.character[0].id;
+            });
+
+            self.characters.replace(self.characters()[charIndex], new Character(response.character[0]));
+
+            $('#characterModal').modal('hide');
+          } else {
+            alert('error');
+            console.log(response.err);
+          }
+        },
+      });
+    };
+  }
 
   return {
     viewModel: CharacterViewerViewModel,

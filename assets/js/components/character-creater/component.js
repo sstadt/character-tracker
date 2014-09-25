@@ -1,5 +1,5 @@
 /*jslint browser: true*/
-/*globals requirejs, define, alert, confirm, io*/
+/*globals define, alert, confirm*/
 
 /**
  * Character Creater Component
@@ -22,99 +22,102 @@ define([
   ------------------------------*/
 
   function CharacterCreaterViewModel(params) {
+    // cache this to prevent potential conflicts
+    var self = this;
+
     // character list - synced to the CharacterListViewModel
-    this.characters = params.characterList;
+    self.characters = params.characterList;
 
     // class data
-    this.classes = ko.observableArray([]);
-    this.classOptions = ko.observableArray([]);
+    self.classes = ko.observableArray([]);
+    self.classOptions = ko.observableArray([]);
 
     // new character data
-    this.newCharacterName = ko.observable();
-    this.newCharacterClass = ko.observable();
-    this.newCharacterStrength = ko.observable(statistics.defaultStatisticValue);
-    this.newCharacterDexterity = ko.observable(statistics.defaultStatisticValue);
-    this.newCharacterVitality = ko.observable(statistics.defaultStatisticValue);
-    this.newCharacterIntellect = ko.observable(statistics.defaultStatisticValue);
-    this.newCharacterBiography = ko.observable();
+    self.newCharacterName = ko.observable();
+    self.newCharacterClass = ko.observable();
+    self.newCharacterStrength = ko.observable(statistics.defaultStatisticValue);
+    self.newCharacterDexterity = ko.observable(statistics.defaultStatisticValue);
+    self.newCharacterVitality = ko.observable(statistics.defaultStatisticValue);
+    self.newCharacterIntellect = ko.observable(statistics.defaultStatisticValue);
+    self.newCharacterBiography = ko.observable();
 
     // populate class data
     $.ajax({
-      context: this,
+      type: 'GET',
       url: '/static/classes',
       dataType: 'json',
+      cache: false,
       success: function (response) {
         if (response.success) {
           var mappedClasses = $.map(response.classes, function (c) {
             return new CharacterClass(c);
           });
 
-          this.classes(mappedClasses);
-          this.classOptions(mappedClasses.map(function (c) {
+          self.classes(mappedClasses);
+          self.classOptions(mappedClasses.map(function (c) {
             return c.name;
           }));
 
-          this.bonuses = response.bonuses;
+          self.bonuses = response.bonuses;
         } else {
           alert('error getting classes');
           console.log(response);
         }
       }
     });
+
+    // set the character class for a new character
+    self.setNewCharacterClass = function () {
+      var selectedClass = _.find(self.classes(), function (c) {
+          return c.name === self.newCharacterClass();
+        });
+
+      self.newCharacterStrength(statistics.getClassBonus('strength', selectedClass, self.bonuses) + statistics.defaultStatisticValue);
+      self.newCharacterDexterity(statistics.getClassBonus('dexterity', selectedClass, self.bonuses) + statistics.defaultStatisticValue);
+      self.newCharacterVitality(statistics.getClassBonus('vitality', selectedClass, self.bonuses) + statistics.defaultStatisticValue);
+      self.newCharacterIntellect(statistics.getClassBonus('intellect', selectedClass, self.bonuses) + statistics.defaultStatisticValue);
+    };
+
+    // add a new character
+    self.addCharacter = function () {
+      var newChar = {
+          name: self.newCharacterName(),
+          charClass: self.newCharacterClass(),
+          strength: self.newCharacterStrength(),
+          dexterity: self.newCharacterDexterity(),
+          vitality: self.newCharacterVitality(),
+          intellect: self.newCharacterIntellect(),
+          bio: self.newCharacterBiography()
+        };
+
+      $.ajax({
+        type: 'POST',
+        url: '/character/create',
+        dataType: 'json',
+        data: newChar,
+        cache: false,
+        success: function (response) {
+          if (response.success) {
+            self.characters.push(new Character(response.character));
+
+            self.newCharacterName('');
+            self.newCharacterClass('');
+            self.newCharacterStrength(statistics.defaultStatisticValue);
+            self.newCharacterDexterity(statistics.defaultStatisticValue);
+            self.newCharacterVitality(statistics.defaultStatisticValue);
+            self.newCharacterIntellect(statistics.defaultStatisticValue);
+            self.newCharacterBiography('');
+          } else {
+            alert('error');
+            console.log(response.error);
+          }
+        }
+      });
+    };
   }
 
   /* View Model Methods
   ------------------------------*/
-
-  // set the character class for a new character
-  CharacterCreaterViewModel.prototype.setNewCharacterClass = function () {
-    var selectedClass = _.find(this.classes(), function (c) {
-        return c.name === this.newCharacterClass();
-      }, this);
-
-    this.newCharacterStrength(statistics.getClassBonus('strength', selectedClass, this.bonuses) + statistics.defaultStatisticValue);
-    this.newCharacterDexterity(statistics.getClassBonus('dexterity', selectedClass, this.bonuses) + statistics.defaultStatisticValue);
-    this.newCharacterVitality(statistics.getClassBonus('vitality', selectedClass, this.bonuses) + statistics.defaultStatisticValue);
-    this.newCharacterIntellect(statistics.getClassBonus('intellect', selectedClass, this.bonuses) + statistics.defaultStatisticValue);
-  };
-
-  // add a new character
-  CharacterCreaterViewModel.prototype.addCharacter = function () {
-    var newChar = {
-        name: this.newCharacterName(),
-        charClass: this.newCharacterClass(),
-        strength: this.newCharacterStrength(),
-        dexterity: this.newCharacterDexterity(),
-        vitality: this.newCharacterVitality(),
-        intellect: this.newCharacterIntellect(),
-        bio: this.newCharacterBiography()
-      };
-
-    $.ajax({
-      context: this,
-      type: 'POST',
-      url: '/character/create',
-      dataType: 'json',
-      data: newChar,
-      cache: false,
-      success: function (response) {
-        if (response.success) {
-          this.characters.push(new Character(response.character));
-
-          this.newCharacterName('');
-          this.newCharacterClass('');
-          this.newCharacterStrength(statistics.defaultStatisticValue);
-          this.newCharacterDexterity(statistics.defaultStatisticValue);
-          this.newCharacterVitality(statistics.defaultStatisticValue);
-          this.newCharacterIntellect(statistics.defaultStatisticValue);
-          this.newCharacterBiography('');
-        } else {
-          alert('error');
-          console.log(response.error);
-        }
-      }
-    });
-  };
 
   return {
     viewModel: CharacterCreaterViewModel,
