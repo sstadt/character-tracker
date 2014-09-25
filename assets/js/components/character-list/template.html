@@ -1,7 +1,7 @@
 <div class="container-fluid">
 	<div class="row">
 		<div id="charListContainer" class="col-md-8">
-			<div class="row">
+			<div class="list-head">
 				<div class="col-md-3">Name</div>
 				<div class="col-md-2">Class</div>
 				<div class="col-md-1">Strength</div>
@@ -11,8 +11,8 @@
 				<div class="col-md-1">Health</div>
 				<div class="col-md-2"></div>
 			</div>
-			<div data-bind="foreach: characters, visible: characters().length > 0">
-				<div class="row" data-bind="slideDown">
+			<div class="list-content" data-bind="foreach: characters, visible: characters().length > 0">
+				<div class="list-item" data-bind="slideDown">
 					<div class="col-md-3" data-bind="text: name">Name</div>
 					<div class="col-md-2" data-bind="text: charClass">Class</div>
 					<div class="col-md-1" data-bind="text: strength">Strength</div>

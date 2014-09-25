@@ -1,7 +1,25 @@
-[contenteditable]:hover, [contenteditable]:focus {
-	background-color: @edit-in-place;
-}
+#charListContainer {
 
-[contenteditable] {
-	padding: 4px;
+	[class^="col-"] {
+		padding: 4px 6px;
+	}
+
+	.list-head {
+		overflow: hidden;
+		color: @grid-header-font;
+		background-color: @grid-header-background;
+	}
+
+	.list-content {
+		overflow: hidden;
+
+		.list-item {
+			overflow: hidden;
+		}
+
+		.list-item:nth-child(even) {
+			background-color: @grid-content-zebra-stripe;
+		}
+	}
+
 }
