@@ -39,10 +39,10 @@
 			</table>
 		</div>
 		<div class="col-md-4">
-			<character-creater params="characterList: characters"></character-creater>
+			<div data-bind="component: { name: 'character-creater', params: { characterList: characters } }"></div>
 		</div>
 	</div>
 </div>
 
-<character-viewer params="characterList: characters, selectedCharacter: selectedCharacter"></character-viewer>
+<div data-bind="component: { name: 'character-viewer', params: { characterList: characters, selectedCharacter: selectedCharacter } }"></div>
 

@@ -41,12 +41,14 @@ define([
 
   // update an existing character
   CharacterViewerViewModel.prototype.updateCharacter = function () {
+    // set up the updated character object for sails
     var updatedChar = {
       id: this.selectedCharacter().id,
       name: this.selectedCharacterName,
       bio: this.selectedCharacterBiography
     };
 
+    // post character updates to sails
     $.ajax({
       context: this,
       type: 'POST',
