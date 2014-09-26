@@ -54,6 +54,10 @@ module.exports.routes = {
     controller: 'static',
     action: 'weapons'
   },
+  '/static/comments': {
+    controller: 'static',
+    action: 'comments'
+  },
 
   // characters
   '/character/getlist': {
@@ -63,6 +67,12 @@ module.exports.routes = {
   '/character/dropall': {
     controller: 'character',
     action: 'dropall'
+  },
+
+  // comments
+  '/comment/insert': {
+    controller: 'comment',
+    action: 'insert'
   }
 
   /***************************************************************************

@@ -86,10 +86,10 @@ define([
   }
 
   // create character component
-  ko.components.register('character-creater', { require: 'components/character-creater/component' });
+  ko.components.register('character-creater', { require: 'components/knockout/character-creater/component' });
 
   // view/edit character component
-  ko.components.register('character-viewer', { require: 'components/character-viewer/component' });
+  ko.components.register('character-viewer', { require: 'components/knockout/character-viewer/component' });
 
   return {
     viewModel: CharacterListViewModel,
