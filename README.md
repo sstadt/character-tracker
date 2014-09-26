@@ -13,8 +13,7 @@ a [Sails](http://sailsjs.org) application
  - [x] [scott] Split off the character creater as a component
  - [x] [scott] Split off the character viewer as a component
  - [x] [scott] Split off the character list as a component
- - [ ] [scott] Build weapons component
- - [ ] [scott] Build level up component
+ - [ ] [scott] Build the Backbone/react version of the app
 
 # Setup
 

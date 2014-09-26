@@ -37,6 +37,14 @@ module.exports.routes = {
     view: 'tracker/index'
   },
 
+  // apps
+  '/knockout': {
+    view: 'tracker/knockout'
+  },
+  '/backbone': {
+    view: 'tracker/backbone'
+  },
+
   // hard coded data
   '/static/classes': {
     controller: 'static',
