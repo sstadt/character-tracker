@@ -5,15 +5,16 @@ requirejs.config({
   paths: {
     // plugins
     'text': 'plugins/text',
+    'jsx': 'plugins/jsx',
 
     // vendor
+    'sails': 'vendor/sails.io',
     'jquery': 'vendor/jquery-2.1.1',
     'lodash': 'vendor/lodash.compat',
     'bootstrap': 'vendor/bootstrap',
     'knockout': 'vendor/knockout-3.2.0',
-    'sails': 'vendor/sails.io',
-    'react': 'vendor/react.js',
-    'jsx': 'vendor/JSXTransformer.js',
+    'react': 'vendor/react',
+    'JSXTransformer': 'vendor/JSXTransformer',
 
     // classes
     'Character': 'lib/classes/Character',
@@ -33,6 +34,9 @@ requirejs.config({
   deps: [
     'knockout', 'jquery', 'sails', 'bootstrap'
   ],
+  jsx: {
+    fileExtension: '.jsx'
+  },
   callback: function (ko, $) {
 
     /* Custom Data Bindings

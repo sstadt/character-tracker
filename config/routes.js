@@ -41,8 +41,8 @@ module.exports.routes = {
   '/knockout': {
     view: 'tracker/knockout'
   },
-  '/backbone': {
-    view: 'tracker/backbone'
+  '/react': {
+    view: 'tracker/react'
   },
 
   // hard coded data
