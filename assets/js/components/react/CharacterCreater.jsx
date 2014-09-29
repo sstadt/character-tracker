@@ -43,17 +43,6 @@ define(['jquery', 'lodash', 'react', 'statistics'], function ($, _, React, stati
 				}
  			});
 
-			// var author = this.refs.author.getDOMNode().value.trim(),
-			// 	text = this.refs.text.getDOMNode().value.trim();
-
-			// if (!text || !author) {
-			// 	return;
-			// }
-
-			// this.props.onCommentSubmit({ author: author, text: text });
-			// this.refs.author.getDOMNode().value = '';
-			// this.refs.text.getDOMNode().value = '';
-
 			return;
 		},
 		handleClassChange: function (e) {
