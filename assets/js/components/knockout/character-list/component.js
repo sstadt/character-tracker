@@ -34,6 +34,22 @@ define([
     this.characters = ko.observableArray([]);
     this.selectedCharacter = ko.observable();
 
+    self.sortByName = function () {
+      var sorted = this.characters().sort(function (p, c) {
+        var order = 0;
+
+        if (p.name < c.name) {
+          order = -1;
+        } else if (p.name > c.name) {
+          order = 1;
+        }
+
+        return order;
+      });
+
+      this.characters(sorted);
+    };
+
     // set the selected character - this will be watched by the character-viewer component
     self.viewCharacter = function (character) {
       self.selectedCharacter(character);
