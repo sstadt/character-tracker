@@ -35,10 +35,10 @@ define([
     // new character data
     self.newCharacterName = ko.observable();
     self.newCharacterClass = ko.observable();
-    self.newCharacterStrength = ko.observable(statistics.defaultStatisticValue);
-    self.newCharacterDexterity = ko.observable(statistics.defaultStatisticValue);
-    self.newCharacterVitality = ko.observable(statistics.defaultStatisticValue);
-    self.newCharacterIntellect = ko.observable(statistics.defaultStatisticValue);
+    self.newCharacterStrength = ko.observable(statistics.getDefaultStat());
+    self.newCharacterDexterity = ko.observable(statistics.getDefaultStat());
+    self.newCharacterVitality = ko.observable(statistics.getDefaultStat());
+    self.newCharacterIntellect = ko.observable(statistics.getDefaultStat());
     self.newCharacterBiography = ko.observable();
 
     // populate class data
@@ -72,10 +72,10 @@ define([
           return c.name === self.newCharacterClass();
         });
 
-      self.newCharacterStrength(statistics.getClassBonus('strength', selectedClass, self.bonuses) + statistics.defaultStatisticValue);
-      self.newCharacterDexterity(statistics.getClassBonus('dexterity', selectedClass, self.bonuses) + statistics.defaultStatisticValue);
-      self.newCharacterVitality(statistics.getClassBonus('vitality', selectedClass, self.bonuses) + statistics.defaultStatisticValue);
-      self.newCharacterIntellect(statistics.getClassBonus('intellect', selectedClass, self.bonuses) + statistics.defaultStatisticValue);
+      self.newCharacterStrength(statistics.getClassBonus('strength', selectedClass, self.bonuses) + statistics.getDefaultStat());
+      self.newCharacterDexterity(statistics.getClassBonus('dexterity', selectedClass, self.bonuses) + statistics.getDefaultStat());
+      self.newCharacterVitality(statistics.getClassBonus('vitality', selectedClass, self.bonuses) + statistics.getDefaultStat());
+      self.newCharacterIntellect(statistics.getClassBonus('intellect', selectedClass, self.bonuses) + statistics.getDefaultStat());
     };
 
     // add a new character
@@ -102,10 +102,10 @@ define([
 
             self.newCharacterName('');
             self.newCharacterClass('');
-            self.newCharacterStrength(statistics.defaultStatisticValue);
-            self.newCharacterDexterity(statistics.defaultStatisticValue);
-            self.newCharacterVitality(statistics.defaultStatisticValue);
-            self.newCharacterIntellect(statistics.defaultStatisticValue);
+            self.newCharacterStrength(statistics.getDefaultStat());
+            self.newCharacterDexterity(statistics.getDefaultStat());
+            self.newCharacterVitality(statistics.getDefaultStat());
+            self.newCharacterIntellect(statistics.getDefaultStat());
             self.newCharacterBiography('');
           } else {
             alert('error');

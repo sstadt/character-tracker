@@ -1,5 +1,18 @@
+/*jslint browser: true*/
+/*globals define*/
+
+/**
+ * statistics library
+ *
+ * Contains functions to help with manipulation
+ * and calculations associated with character
+ * statistics.
+ */
+
 define('statistics', function () {
-	'use strict';
+  'use strict';
+
+  var defaultStatisticValue = 14;
 
   /**
    * Get a statistic value adjusted for by a
@@ -36,9 +49,13 @@ define('statistics', function () {
     return bonus;
   }
 
+  function getDefaultStatisticValue() {
+    return defaultStatisticValue;
+  }
+
   return {
-  	defaultStatisticValue: 14,
-  	getAdjusted: getAdjustedStatistic,
-  	getClassBonus: getClassBonus
+    getDefaultStat: getDefaultStatisticValue,
+    getAdjusted: getAdjustedStatistic,
+    getClassBonus: getClassBonus
   };
 });

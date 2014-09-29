@@ -33,12 +33,12 @@ define(['jquery', 'react', 'statistics'], function ($, React, statistics) {
 		},
 		render: function () {
 			var characterNodes = this.state.data.map(function (character) {
-				character.health = statistics.getAdjusted(10, character.vitality)
+				character.health = statistics.getAdjusted(10, character.vitality);
 
 				return (
 					<div className="list-item">
 						<div className="col-md-3">{character.name}</div>
-						<div className="col-md-2">{character.class}</div>
+						<div className="col-md-2">{character.charClass}</div>
 						<div className="col-md-1">{character.strength}</div>
 						<div className="col-md-1">{character.dexterity}</div>
 						<div className="col-md-1">{character.vitality}</div>
