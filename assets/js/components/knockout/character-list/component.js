@@ -60,12 +60,14 @@ define([
       });
 
       // sort the observable
-      sorted = this.characters().sort(function (prev, current) {
-        var movement = 0;
+      sorted = this.characters().sort(function (prev, curr) {
+        var movement = 0,
+          prevVal = (typeof prev[sortBy] === 'function') ? prev[sortBy]() : prev[sortBy], // hand off value in case this is computed
+          currVal = (typeof curr[sortBy] === 'function') ? curr[sortBy]() : curr[sortBy]; // hand off value in case this is computed
 
-        if (prev[sortBy] < current[sortBy]) {
+        if (prevVal < currVal) {
           movement = (order === 'desc') ? 1 : -1;
-        } else if (prev[sortBy] > current[sortBy]) {
+        } else if (prevVal > currVal) {
           movement = (order === 'asc') ? 1 : -1;
         }
 
