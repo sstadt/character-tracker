@@ -36,15 +36,17 @@ define([
 
     self.sortCharacterList = function (sortBy, modelView, event) {
       var btn = $(event.target),
-        order = btn.find('i').hasClass('glyphicon-chevron-down') ? 'desc' : 'asc',
-        newicon = (order === 'asc') ? 'glyphicon-chevron-down' : 'glyphicon-chevron-up',
+        order = btn.find('i').hasClass('glyphicon-chevron-down') ? 'asc' : 'desc',
+        newicon = (order === 'asc') ? 'glyphicon-chevron-up' : 'glyphicon-chevron-down',
         sorted;
 
-      console.log(btn);
-      console.log(order);
+      // set icons
+      btn.find('i').attr('class', 'glyphicon ' + newicon);
+      btn.closest('[class^="col-"').siblings().find('i').each(function () {
+        $(this).attr('class', 'glyphicon');
+      });
 
-      btn.attr('class', 'glyphicon ' + newicon);
-
+      // sort the observable
       sorted = this.characters().sort(function (prev, current) {
         var movement = 0;
         console.log(order);
