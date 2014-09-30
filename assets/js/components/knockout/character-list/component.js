@@ -34,17 +34,28 @@ define([
     this.characters = ko.observableArray([]);
     this.selectedCharacter = ko.observable();
 
-    self.sortByName = function () {
-      var sorted = this.characters().sort(function (p, c) {
-        var order = 0;
+    self.sortCharacterList = function (sortBy, modelView, event) {
+      var btn = $(event.target),
+        order = btn.find('i').hasClass('glyphicon-chevron-down') ? 'desc' : 'asc',
+        newicon = (order === 'asc') ? 'glyphicon-chevron-down' : 'glyphicon-chevron-up',
+        sorted;
 
-        if (p.name < c.name) {
-          order = -1;
-        } else if (p.name > c.name) {
-          order = 1;
+      console.log(btn);
+      console.log(order);
+
+      btn.attr('class', 'glyphicon ' + newicon);
+
+      sorted = this.characters().sort(function (prev, current) {
+        var movement = 0;
+        console.log(order);
+
+        if (prev[sortBy] < current[sortBy]) {
+          movement = (order === 'desc') ? 1 : -1;
+        } else if (prev[sortBy] > current[sortBy]) {
+          movement = (order === 'asc') ? 1 : -1;
         }
 
-        return order;
+        return movement;
       });
 
       this.characters(sorted);

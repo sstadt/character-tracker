@@ -18,9 +18,6 @@ define([
 ], function ($, ko, statistics, Character, CharacterClass, html) {
   'use strict';
 
-  /* View Model
-  ------------------------------*/
-
   function CharacterCreaterViewModel(params) {
     // cache this to prevent potential conflicts
     var self = this;
@@ -115,9 +112,6 @@ define([
       });
     };
   }
-
-  /* View Model Methods
-  ------------------------------*/
 
   return {
     viewModel: CharacterCreaterViewModel,

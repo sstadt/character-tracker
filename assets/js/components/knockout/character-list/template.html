@@ -2,13 +2,41 @@
 	<div class="row">
 		<div id="charListContainer" class="col-md-8">
 			<div class="list-head">
-				<div class="col-md-3"><a href="#" data-bind="click: sortByName">Name</a></div>
-				<div class="col-md-2">Class</div>
-				<div class="col-md-1">Strength</div>
-				<div class="col-md-1">Dexterity</div>
-				<div class="col-md-1">Vitality</div>
-				<div class="col-md-1">Intellect</div>
-				<div class="col-md-1">Health</div>
+				<div class="col-md-3">
+					<a href="#" data-bind="click: sortCharacterList.bind($data, 'name')">
+						<i class="glyphicon"></i> Name
+					</a>
+				</div>
+				<div class="col-md-2">
+					<a href="#" data-bind="click: sortCharacterList.bind($data, 'charClass')">
+						<i class="glyphicon"></i> Class
+					</a>
+				</div>
+				<div class="col-md-1">
+					<a href="#" data-bind="click: sortCharacterList.bind($data, 'strength')">
+						<i class="glyphicon"></i> STR
+					</a>
+				</div>
+				<div class="col-md-1">
+					<a href="#" data-bind="click: sortCharacterList.bind($data, 'dexterity')">
+						<i class="glyphicon"></i> DEX
+					</a>
+				</div>
+				<div class="col-md-1">
+					<a href="#" data-bind="click: sortCharacterList.bind($data, 'vitality')">
+						<i class="glyphicon"></i> VIT
+					</a>
+				</div>
+				<div class="col-md-1">
+					<a href="#" data-bind="click: sortCharacterList.bind($data, 'intellect')">
+						<i class="glyphicon"></i> INT
+					</a>
+				</div>
+				<div class="col-md-1">
+					<a href="#" data-bind="click: sortCharacterList.bind($data, 'health')">
+						<i class="glyphicon"></i> HP
+					</a>
+				</div>
 				<div class="col-md-2"></div>
 			</div>
 			<div class="list-content" data-bind="foreach: characters, visible: characters().length > 0">
