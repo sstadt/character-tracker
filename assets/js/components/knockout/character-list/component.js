@@ -34,6 +34,19 @@ define([
     this.characters = ko.observableArray([]);
     this.selectedCharacter = ko.observable();
 
+    /**
+     * Sort the character list by a passed parameter.
+     *
+     * By doing a simple javascript sort on the existing characters
+     * observable array, and reassigning that sorted array back to
+     * the observable, we can easily modify the page content through
+     * data bindings.
+     * 
+     * @param  {string}       sortBy    The name of the character property to sort by
+     * @param  {object}       modelView The model view object - unused; passed in by knockout
+     * @param  {jQuery.event} event     The event object
+     * @return {void}
+     */
     self.sortCharacterList = function (sortBy, modelView, event) {
       var btn = $(event.target),
         order = btn.find('i').hasClass('glyphicon-chevron-down') ? 'asc' : 'desc',
@@ -64,11 +77,33 @@ define([
     };
 
     // set the selected character - this will be watched by the character-viewer component
+    /**
+     * Set the currently selected character.
+     *
+     * There is precious little functionality here as the child
+     * component will take care of the heavy lifting. By linking
+     * the child component to the selected character observable
+     * through the 'component' data binding parameters, we've
+     * essentially linked the two modules through the selectedCharacter
+     * observable. Any updates made here, will automatically
+     * reflect in the child component.
+     * 
+     * @param  {object} character The character object being passed from knockout
+     * @return {void}
+     */
     self.viewCharacter = function (character) {
       self.selectedCharacter(character);
     };
 
-    // remove an existing character
+    /**
+     * Remove an existing character.
+     *
+     * This will delete a character from the character list after an
+     * ajax call to the back-end.
+     * 
+     * @param  {object} character The character object being passed from knockout
+     * @return {void}
+     */
     self.removeCharacter = function (character) {
       if (confirm('Are you sure you want to delete this character?')) {
         // delete the character from sails
@@ -91,7 +126,7 @@ define([
       }
     };
 
-    // populate initial characters from sails
+    // populate initial characters from the back-end
     $.ajax({
       type: 'GET',
       url: '/character/getlist',
@@ -112,7 +147,17 @@ define([
         }
       }
     });
-  }
+
+  } /* End of View Model */
+
+  /**
+   * Register child components.
+   *
+   * The child components will be instantiated and linked to their
+   * data-bind in the markup. Any parameters passed in from the
+   * data-binding in the markup will be passed into the child
+   * component's view model
+   */
 
   // create character component
   ko.components.register('character-creater', { require: 'components/knockout/character-creater/component' });
