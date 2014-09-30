@@ -112,7 +112,7 @@ define([
       });
     };
 
-    // populate class data
+    // populate initial class data
     $.ajax({
       type: 'GET',
       url: '/static/classes',

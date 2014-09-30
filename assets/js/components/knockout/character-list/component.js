@@ -126,7 +126,7 @@ define([
       }
     };
 
-    // populate initial characters from the back-end
+    // populate initial characters from sails
     $.ajax({
       type: 'GET',
       url: '/character/getlist',
