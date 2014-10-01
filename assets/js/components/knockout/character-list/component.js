@@ -127,6 +127,20 @@ define([
       }
     };
 
+    self.showCharacterElement = function (element) {
+      if (element.nodeType === 1) {
+        $(element).hide().slideDown();
+      }
+    };
+
+    self.hideCharacterElement = function (element) {
+      if (element.nodeType === 1) {
+        $(element).slideUp(function () {
+          $(element).remove();
+        });
+      }
+    };
+
     // populate initial characters from sails
     $.ajax({
       type: 'GET',
