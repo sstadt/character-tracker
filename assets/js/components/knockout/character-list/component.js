@@ -127,12 +127,31 @@ define([
       }
     };
 
+    /**
+     * Show a new character element.
+     *
+     * Bound using afterAdd on the parent element, allows
+     * you to control the behavior of how to element is added
+     * to the DOM.
+     * 
+     * @param  {element} element jQuery element being added
+     * @return {void}
+     */
     self.showCharacterElement = function (element) {
       if (element.nodeType === 1) {
         $(element).hide().slideDown();
       }
     };
 
+    /**
+     * Remove an existing character element.
+     *
+     * Bound using beforeRemove on the parent element, allows
+     * you to control how the element is removed from the DOM.
+     * 
+     * @param  {element} element jQuery element being removed
+     * @return {void}
+     */
     self.hideCharacterElement = function (element) {
       if (element.nodeType === 1) {
         $(element).slideUp(function () {
