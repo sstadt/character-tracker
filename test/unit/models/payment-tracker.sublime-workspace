@@ -1,0 +1,727 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"Character",
+				"CharacterCreater"
+			],
+			[
+				"Chara",
+				"CharacterListViewModel"
+			],
+			[
+				"selectedC",
+				"selectedCharacterBiography"
+			],
+			[
+				"selecte",
+				"selectedCharacter"
+			],
+			[
+				"value",
+				"valueAccessor"
+			],
+			[
+				"sele",
+				"selectedCharacter"
+			],
+			[
+				"ma",
+				"mappedCharacters"
+			],
+			[
+				"new",
+				"new_child_avatar"
+			],
+			[
+				"new_chil",
+				"new_child_name"
+			],
+			[
+				"n",
+				"none"
+			],
+			[
+				"accordion",
+				"accordion-navigation"
+			],
+			[
+				"pre",
+				"preventDefault"
+			],
+			[
+				"existing",
+				"existingreport"
+			],
+			[
+				"th",
+				"th	Tag"
+			],
+			[
+				"sub",
+				"substring"
+			],
+			[
+				"max",
+				"max-width"
+			],
+			[
+				"font-st",
+				"font-style"
+			],
+			[
+				"animation",
+				"animationType"
+			],
+			[
+				"tr",
+				"transition"
+			],
+			[
+				"follow",
+				"followmeLimit"
+			],
+			[
+				"start",
+				"startdate"
+			],
+			[
+				"format",
+				"formatTime"
+			],
+			[
+				"de",
+				"deltaFactor"
+			],
+			[
+				"repla",
+				"replacementtext"
+			],
+			[
+				"inpu",
+				"input	Tag"
+			],
+			[
+				"print",
+				"print_r"
+			],
+			[
+				"font",
+				"font-family"
+			],
+			[
+				"fade",
+				"fadeOut"
+			],
+			[
+				"strip",
+				"stripslashes"
+			],
+			[
+				"backgro",
+				"background-color"
+			],
+			[
+				"property",
+				"property_id"
+			],
+			[
+				"rem",
+				"removeClass"
+			],
+			[
+				"add",
+				"addClass"
+			],
+			[
+				"office",
+				"officeabbr"
+			],
+			[
+				"iss",
+				"isset"
+			],
+			[
+				"array_m",
+				"array_merge"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"parse",
+				"parseList"
+			],
+			[
+				"un",
+				"unlink"
+			],
+			[
+				"notInD",
+				"notInDirectory"
+			],
+			[
+				"mysql_fe",
+				"mysql_fetch_assoc"
+			],
+			[
+				"array_p",
+				"array_push"
+			],
+			[
+				"strr",
+				"strrpos"
+			],
+			[
+				"for",
+				"foreach	foreach …"
+			],
+			[
+				"scan",
+				"scandir"
+			],
+			[
+				"app",
+				"appendTo"
+			],
+			[
+				"check_",
+				"check_res"
+			],
+			[
+				"class",
+				"classList"
+			],
+			[
+				"json",
+				"json_encode"
+			],
+			[
+				"mysql_in",
+				"mysql_insert_id"
+			],
+			[
+				"mysql_r",
+				"mysql_real_escape_string"
+			],
+			[
+				"html",
+				"htmlentities"
+			],
+			[
+				"input",
+				"input-box"
+			],
+			[
+				"mysql_er",
+				"mysql_error"
+			],
+			[
+				"mysql_e",
+				"mysql_error"
+			],
+			[
+				"mysql_",
+				"mysql_db_query"
+			],
+			[
+				"mysql_fet",
+				"mysql_fetch_assoc"
+			],
+			[
+				"mysql_num",
+				"mysql_num_rows"
+			],
+			[
+				"mysql",
+				"mysql_query"
+			],
+			[
+				"id",
+				"id"
+			],
+			[
+				"last",
+				"lastname"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 47.0,
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			],
+			[
+				"Snippet: ",
+				"Snippet: Throw Exception"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 0.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/darkenscale/Projects/character-tracker/assets/js/components/knockout/character-creater/template.html",
+		"/Users/darkenscale/Projects/character-tracker/assets/js/components/knockout/character-viewer/component.js",
+		"/Users/darkenscale/Projects/character-tracker/assets/js/components/knockout/character-creater/component.js",
+		"/Users/darkenscale/Projects/character-tracker/assets/js/components/knockout/character-list/component.js",
+		"/Users/darkenscale/Projects/character-tracker/assets/js/components/knockout/character-list/template.html",
+		"/Users/darkenscale/Projects/character-tracker/assets/js/config.js",
+		"/Users/darkenscale/Projects/character-tracker/README.md",
+		"/Users/darkenscale/Projects/character-tracker/assets/styles/views/characters.less",
+		"/Users/darkenscale/Projects/character-tracker/assets/styles/theme/palette.less",
+		"/Users/darkenscale/Projects/character-tracker/assets/styles/importer.less",
+		"/Users/darkenscale/Projects/character-tracker/assets/js/lib/statistics.js",
+		"/Users/darkenscale/Projects/character-tracker/assets/js/components/react/CharacterCreater.jsx",
+		"/Users/darkenscale/Projects/character-tracker/assets/js/components/react/CharacterList.jsx",
+		"/Users/darkenscale/Projects/character-tracker/assets/js/app/react-tracker.js",
+		"/Users/darkenscale/Projects/character-tracker/config/routes.js",
+		"/Users/darkenscale/Projects/character-tracker/views/tracker/react.ejs",
+		"/Users/darkenscale/Projects/character-tracker/assets/js/lib/classes/Character.js",
+		"/Users/darkenscale/Projects/character-tracker/assets/js/app/knockout-tracker.js",
+		"/Users/darkenscale/Projects/character-tracker/assets/js/components/react/character-list/component.jsx",
+		"/Users/darkenscale/Projects/character-tracker/assets/js/components/react/character-list/list.jsx",
+		"/Users/darkenscale/Projects/character-tracker/assets/js/components/react/character-list/node.jsx",
+		"/Users/darkenscale/Projects/character-tracker/assets/js/plugins/jsx.js",
+		"/Users/darkenscale/Projects/character-tracker/assets/js/components/react/character-list/template.html",
+		"/Users/darkenscale/Projects/character-tracker/api/controllers/CharacterController.js",
+		"/Users/darkenscale/Projects/character-tracker/assets/js/react-app.js",
+		"/Users/darkenscale/Projects/character-tracker/assets/js/vendor/JSXTransformer.js",
+		"/Users/darkenscale/Projects/character-tracker/views/tracker/index.ejs",
+		"/Users/darkenscale/Projects/character-tracker/api/controllers/StaticController.js",
+		"/Users/darkenscale/Projects/character-tracker/api/controllers/CommentController.js",
+		"/Users/darkenscale/Projects/character-tracker/views/layout.ejs",
+		"/Users/darkenscale/Projects/character-tracker/assets/styles/bootstrap/theme/variables.less",
+		"/Users/darkenscale/Projects/character-tracker/assets/js/app/backbone-tracker.js",
+		"/Users/darkenscale/Projects/character-tracker/config/comments.js",
+		"/Users/darkenscale/Projects/character-tracker/assets/js/components/react/comment-box/template.html",
+		"/Users/darkenscale/Projects/character-tracker/assets/js/components/react/comment/template.html",
+		"/Users/darkenscale/Projects/character-tracker/assets/js/components/react/comment-list/template-item.html",
+		"/Users/darkenscale/Projects/character-tracker/assets/js/components/react/comment-list/template.html",
+		"/Users/darkenscale/Projects/character-tracker/assets/js/components/react/comment-form/template.html",
+		"/Users/darkenscale/Projects/character-tracker/config/globals.js",
+		"/Users/darkenscale/Projects/character-tracker/assets/js/backbone-app.js",
+		"/Users/darkenscale/Projects/character-tracker/assets/js/knockout-app.js",
+		"/Users/darkenscale/Projects/character-tracker/views/tracker/knockout.ejs",
+		"/Users/darkenscale/Projects/character-tracker/assets/styles/views/home.less",
+		"/Users/darkenscale/Projects/character-tracker/tasks/pipeline.js",
+		"/Users/darkenscale/Projects/character-tracker/assets/styles/bootstrap/bootstrap.less",
+		"/Users/darkenscale/Projects/character-tracker/assets/js/components/character-list/template.html",
+		"/Users/darkenscale/Projects/character-tracker/assets/js/components/character-list/component.js",
+		"/Users/darkenscale/Projects/character-tracker/assets/styles/bootstrap/variables.less",
+		"/Users/darkenscale/Projects/character-tracker/package.json",
+		"/Users/darkenscale/Projects/character-tracker/assets/styles/bootstrap/mixins/alerts.less",
+		"/Users/darkenscale/Projects/character-tracker/assets/styles/bootstrap/mixins.less",
+		"/Users/darkenscale/Projects/character-tracker/assets/styles/bootstrap/theme.less",
+		"/Users/darkenscale/Projects/character-tracker/assets/js/components/character-viewer/component.js",
+		"/Users/darkenscale/Projects/character-tracker/assets/js/components/character-viewer/template.html",
+		"/Users/darkenscale/Projects/character-tracker/assets/js/components/character-creater/component.js",
+		"/Users/darkenscale/Projects/character-tracker/assets/js/components/character-creater/template.html",
+		"/Users/darkenscale/Projects/character-tracker/assets/js/vendor/knockout-3.2.0.js",
+		"/Users/darkenscale/Projects/character-tracker/views/tracker/components/charlist.ejs",
+		"/Users/darkenscale/Projects/character-tracker/views/tracker/components/charmodal.ejs",
+		"/Users/darkenscale/Projects/character-tracker/assets/js/site.js",
+		"/Users/darkenscale/Projects/character-tracker/assets/js/components/create-character/template.html",
+		"/Users/darkenscale/Projects/character-tracker/assets/js/components/create-character/component.js",
+		"/Users/darkenscale/Projects/character-tracker/assets/js/components/create-character/component-create-character.html",
+		"/Users/darkenscale/Projects/character-tracker/assets/js/components/create-character/component-create-character.js",
+		"/Users/darkenscale/Projects/character-tracker/views/tracker/components/addchar.ejs",
+		"/Users/darkenscale/Projects/character-tracker/tasks/config/sails-linker.js",
+		"/Users/darkenscale/Projects/character-tracker/assets/js/util/statistics.js",
+		"/Users/darkenscale/Projects/character-tracker/assets/js/app/creater.js",
+		"/Users/darkenscale/Projects/character-tracker/assets/js/classes/Character.js",
+		"/Users/darkenscale/Projects/character-tracker/assets/js/classes/CharacterClass.js",
+		"/Users/darkenscale/Projects/character-tracker/Gruntfile.js",
+		"/Users/darkenscale/Projects/character-tracker/api/models/Character.js",
+		"/Users/darkenscale/Projects/character-tracker/assets/js/dependencies/sails.io.js",
+		"/Users/darkenscale/Projects/character-tracker/assets/styles/theme/settings.less",
+		"/Users/darkenscale/Projects/character-tracker/assets/styles/theme/paletter.less",
+		"/Users/darkenscale/Projects/character-tracker/config/classes.js",
+		"/Users/darkenscale/Projects/character-tracker/assets/js/components/character-list/character-list.html",
+		"/Users/darkenscale/Projects/character-tracker/assets/js/components/character-list/character-list.js",
+		"/Users/darkenscale/Projects/character-tracker/config/local.js",
+		"/Users/darkenscale/Projects/character-tracker/config/connections.js",
+		"/Users/darkenscale/Projects/character-tracker/config/session.js",
+		"/Users/darkenscale/Projects/character-tracker/config/sockets.js",
+		"/Users/darkenscale/Projects/character-tracker/node_modules/sails-disk/lib/adapter.js",
+		"/Users/darkenscale/Projects/character-tracker/config/env/development.js",
+		"/Users/darkenscale/Projects/character-tracker/node_modules/sails-disk/README.md",
+		"/Users/darkenscale/Projects/character-tracker/node_modules/sails-disk/lib/database.js",
+		"/Users/darkenscale/Projects/character-tracker/config/http.js",
+		"/Users/darkenscale/Projects/character-tracker/config/models.js",
+		"/Users/darkenscale/Projects/character-tracker/config/weapons.js",
+		"/Users/darkenscale/Projects/character-tracker/api/policies/sessionAuth.js",
+		"/Users/darkenscale/Projects/character-tracker/views/tracker/create.ejs",
+		"/Users/darkenscale/Projects/character-tracker/api/responses/badRequest.js",
+		"/Users/darkenscale/Projects/character-tracker/views/homepage.ejs",
+		"/Users/darkenscale/Projects/backbone-react/assets/js/script.js",
+		"/Users/darkenscale/Projects/backbone-react/README.md",
+		"/Users/darkenscale/Projects/backbone-react/index.html",
+		"/Users/darkenscale/Projects/nannymonster/assets/linker/js/nannymonster.reports.js",
+		"/Users/darkenscale/Projects/nannymonster/README.md",
+		"/Users/darkenscale/Projects/nannymonster/api/models/User.js",
+		"/Users/darkenscale/Projects/nannymonster/api/controllers/UserController.js",
+		"/Users/darkenscale/Projects/nannymonster/api/controllers/SessionController.js",
+		"/Users/darkenscale/Projects/nannymonster/api/models/Job.js",
+		"/Users/darkenscale/Projects/nannymonster/assets/linker/styles/scss/views/user.scss",
+		"/Users/darkenscale/Projects/nannymonster/assets/linker/styles/scss/_colors.scss",
+		"/Users/darkenscale/Projects/nannymonster/config/global.js",
+		"/Users/darkenscale/Projects/nannymonster/api/controllers/JobController.js",
+		"/Users/darkenscale/Projects/nannymonster/views/user/show.ejs",
+		"/Users/darkenscale/Projects/nannymonster/assets/linker/templates/shiftReport.ejs",
+		"/Users/darkenscale/Projects/nannymonster/api/services/mail.js",
+		"/Users/darkenscale/Projects/nannymonster/views/user/edit.ejs",
+		"/Users/darkenscale/Projects/nannymonster/assets/linker/styles/scss/views/foundation.scss",
+		"/Users/darkenscale/Projects/nannymonster/assets/linker/styles/scss/_settings.scss",
+		"/Users/darkenscale/Projects/nannymonster/assets/linker/styles/site.scss",
+		"/Users/darkenscale/Projects/nannymonster/assets/linker/styles/foundation.scss",
+		"/Users/darkenscale/Projects/nannymonster/views/job/tabs/currentreports.ejs",
+		"/Users/darkenscale/Projects/nannymonster/views/job/work.ejs",
+		"/Users/darkenscale/Projects/nannymonster/views/user/home.ejs",
+		"/Users/darkenscale/Projects/nannymonster/views/500.ejs",
+		"/Users/darkenscale/Projects/nannymonster/package.json",
+		"/Users/darkenscale/Projects/day2daycare/assets/linker/js/nannymonster.site.js",
+		"/Users/darkenscale/Projects/day2daycare/Gruntfile.js",
+		"/Users/darkenscale/Projects/day2daycare/views/partials/navigation.ejs",
+		"/Users/darkenscale/Projects/day2daycare/config/routes.js",
+		"/Users/darkenscale/Projects/day2daycare/views/job/show.ejs",
+		"/Users/darkenscale/Projects/day2daycare/views/job/work.ejs",
+		"/Users/darkenscale/Projects/day2daycare/assets/linker/styles/scss/views/header.scss",
+		"/Users/darkenscale/Projects/day2daycare/assets/linker/styles/scss/views/global.scss",
+		"/Users/darkenscale/Projects/day2daycare/assets/linker/styles/scss/views/foundation.scss"
+	],
+	"find":
+	{
+		"height": 46.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			".data",
+			".classes",
+			"class=",
+			"defaultStatisticValue",
+			"getClassBonus",
+			"console.",
+			"self.classes",
+			"self.characters",
+			"){",
+			"function(",
+			"characters",
+			".class",
+			"strength",
+			".class",
+			"console.log",
+			" )",
+			"( ",
+			"/job/subscribe",
+			"$alert-color",
+			"$stack-alert",
+			"alert-box light",
+			"<dd>",
+			"$darkGreen",
+			"sepia",
+			"Sepia",
+			"sepia",
+			"button",
+			"$transparentGray",
+			"$greenHighlight",
+			"$sepiaHighlight",
+			"$grayHighlight",
+			"efefef",
+			"$tcWidgetShift",
+			"$tcWidgetDate",
+			"$blueText",
+			"new-report-btn",
+			"console.log",
+			"id=\"report_",
+			"JST",
+			"<div class=\"hr\">",
+			"<div class=\"hr\"></div>",
+			"small-12 columns hr",
+			"<hr>",
+			"_1_",
+			"moment",
+			"potty",
+			"sass",
+			"_1_",
+			"_<%= num %>_",
+			"){",
+			"function(",
+			" )",
+			"( ",
+			"_1_",
+			"dateutil",
+			"moment",
+			"watch",
+			"$danger",
+			"#user-search-results",
+			"top-bar",
+			"input[type=\"text\"]",
+			"input[type=\"text\"], input[type=\"password\"], input[type=\"date\"], input[type=\"datetime\"], input[type=\"datetime-local\"], input[type=\"month\"], input[type=\"week\"], input[type=\"email\"], input[type=\"number\"], input[type=\"search\"], input[type=\"tel\"], input[type=\"time\"], input[type=\"url\"], textarea",
+			"wysiwyg-color.css",
+			"glyphicons-halflings",
+			"images",
+			"dateutil",
+			"$loaderSpeed",
+			"d2dc_banked_timeclock_time",
+			"thumbnail",
+			"active_ava",
+			"requried",
+			"table",
+			"top-bar",
+			"util",
+			"underscore",
+			"is_current_page",
+			"port:",
+			"port;",
+			"locals",
+			"res.locals",
+			"app.locals",
+			".locals",
+			"title",
+			"'Sails'",
+			"Sails",
+			"appName",
+			"Sails Playground",
+			"/chat",
+			"You may now log in above.",
+			"above",
+			"abive",
+			"Inernal server error",
+			"inernal server error",
+			"session",
+			"site_",
+			"-link",
+			"link-",
+			"link.",
+			"-cat",
+			"cat.",
+			"cat-",
+			"toggleEdit",
+			"link",
+			"link-widget",
+			"updateGallery",
+			"updateFiles",
+			"updateGallery",
+			"iframe",
+			"scrollheight",
+			"document.getElementById",
+			".height",
+			"iframe",
+			"Inernal",
+			"16px",
+			"upload_to_db",
+			"$this->options = array(",
+			"generate-new-passwords",
+			"input",
+			"generate",
+			"type=\"submit\"",
+			"images",
+			"(confirm(",
+			"confirm(",
+			"dialog(''",
+			"alert(",
+			"alert",
+			"html",
+			"->port"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			".data.charClasses",
+			".charClasses",
+			"className=",
+			"statistics.defaultStatisticValue",
+			") {",
+			"function (",
+			")",
+			"(",
+			"orange",
+			"Orange",
+			"orange",
+			"<div class=\"small-12 columns hr\">",
+			"<div class=\"hr\"><span></span></div>",
+			"hr",
+			"<div class=\"small-12 columns hr\"></div>",
+			"_<%= num %>_",
+			"bathroom",
+			"_<%= num %>_",
+			"_1_",
+			") {",
+			"function (",
+			")",
+			"(",
+			"_<%= num %>_",
+			"img",
+			"thumbnail_size",
+			"avatar_size",
+			"dateutil",
+			"Internal server error",
+			"contact_",
+			"-property",
+			"property-",
+			"property.",
+			"-office",
+			"office.",
+			"office-",
+			"doc",
+			"Internal",
+			"img",
+			"dialog('alert'",
+			"dialog('',"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 135.0
+	},
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 259.0,
+	"status_bar_visible": true
+}
