@@ -1,5 +1,5 @@
-/* jslint: true */
-/* global define */
+/*jslint browser: true*/
+/*globals define*/
 
 /**
  * Class - Character
@@ -21,18 +21,20 @@ define(['knockout', 'statistics'], function (ko, statistics) {
   'use strict';
 
   return function Character(data) {
-    var self = this;
+    if (data === undefined) {
+      data = {};
+    }
 
-    self.id = data.id;
-    self.name = data.name;
-    self.charClass = data.charClass;
-    self.strength = data.strength;
-    self.dexterity = data.dexterity;
-    self.vitality = data.vitality;
-    self.intellect = data.intellect;
-    self.bio = data.bio;
+    this.id = data.id || '';
+    this.name = ko.observable(data.name || '');
+    this.charClass = data.charClass || '';
+    this.strength = ko.observable(data.strength || statistics.getDefaultStat());
+    this.dexterity = ko.observable(data.dexterity || statistics.getDefaultStat());
+    this.vitality = ko.observable(data.vitality || statistics.getDefaultStat());
+    this.intellect = ko.observable(data.intellect || statistics.getDefaultStat());
+    this.bio = ko.observable(data.bio || '');
 
-    self.health = ko.computed(function () {
+    this.health = ko.computed(function () {
       return statistics.getAdjusted(10, data.vitality);
     });
   };

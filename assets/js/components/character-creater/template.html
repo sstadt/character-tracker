@@ -5,14 +5,14 @@
 	<!-- New Character Details -->
 	<div class="form-group">
 		<label for="newName">Character Name</label>
-		<input type="text" id="newName" class="form-control" data-bind="textInput: newCharacterName" />
+		<input type="text" id="newName" class="form-control" data-bind="textInput: newCharacter().name" />
 	</div>
 	<div class="form-group">
 		<label for="newClass">Class</label>
 		<select id="newClass" class="form-control" data-bind="
 			options: classOptions,
 			optionsCaption: '',
-			value: newCharacterClass,
+			value: newCharacter().charClass,
 			event: { change: setNewCharacterClass }" />
 		</select>
 	</div>
@@ -22,21 +22,21 @@
 		<div class="col-sm-6">
 			<div class="form-group">
 				<label for="newStr">Strength</label>
-				<input type="text" id="newStr" class="form-control" data-bind="textInput: newCharacterStrength" readonly />
+				<input type="text" id="newStr" class="form-control" data-bind="textInput: newCharacter().strength" readonly />
 			</div>
 			<div class="form-group">
 				<label for="newVit">Vitality</label>
-				<input type="text" id="newVit" class="form-control" data-bind="textInput: newCharacterVitality" readonly />
+				<input type="text" id="newVit" class="form-control" data-bind="textInput: newCharacter().vitality" readonly />
 			</div>
 		</div>
 		<div class="col-sm-6">
 			<div class="form-group">
 				<label for="newDex">Dexterity</label>
-				<input type="text" id="newDex" class="form-control" data-bind="textInput: newCharacterDexterity" readonly />
+				<input type="text" id="newDex" class="form-control" data-bind="textInput: newCharacter().dexterity" readonly />
 			</div>
 			<div class="form-group">
 				<label for="newInt">Intellect</label>
-				<input type="text" id="newInt" class="form-control" data-bind="textInput: newCharacterIntellect" readonly />
+				<input type="text" id="newInt" class="form-control" data-bind="textInput: newCharacter().intellect" readonly />
 			</div>
 		</div>
 	</div>
@@ -44,7 +44,7 @@
 	<!-- New Character Bio -->
 	<div class="form-group">
 		<label for="newBio">Biography</label>
-		<textarea id="newBio" class="form-control" data-bind="textInput: newCharacterBiography"></textarea>
+		<textarea id="newBio" class="form-control" data-bind="textInput: newCharacter().bio"></textarea>
 	</div>
 
 	<!-- Add New Character -->

@@ -29,58 +29,40 @@ define([
     self.classOptions = ko.observableArray([]);
 
     // new character data
-    self.newCharacterName = ko.observable();
-    self.newCharacterClass = ko.observable();
-    self.newCharacterStrength = ko.observable(statistics.getDefaultStat());
-    self.newCharacterDexterity = ko.observable(statistics.getDefaultStat());
-    self.newCharacterVitality = ko.observable(statistics.getDefaultStat());
-    self.newCharacterIntellect = ko.observable(statistics.getDefaultStat());
-    self.newCharacterBiography = ko.observable();
+    self.newCharacter = ko.observable(new Character());
 
     self.setNewCharacterClass = function () {
       // find the selected character class details based on the current data-bind value
       var selectedClass = _.find(self.classes(), function (c) {
-          return c.name === self.newCharacterClass();
-        });
+          return c.name === self.newCharacter().charClass;
+        }),
+        newStr = statistics.getClassBonus('strength', selectedClass, self.bonuses) + statistics.getDefaultStat(),
+        newDex = statistics.getClassBonus('dexterity', selectedClass, self.bonuses) + statistics.getDefaultStat(),
+        newVit = statistics.getClassBonus('vitality', selectedClass, self.bonuses) + statistics.getDefaultStat(),
+        newInt = statistics.getClassBonus('intellect', selectedClass, self.bonuses) + statistics.getDefaultStat();
 
       // update the statistic data bindings based on the selected class
-      self.newCharacterStrength(statistics.getClassBonus('strength', selectedClass, self.bonuses) + statistics.getDefaultStat());
-      self.newCharacterDexterity(statistics.getClassBonus('dexterity', selectedClass, self.bonuses) + statistics.getDefaultStat());
-      self.newCharacterVitality(statistics.getClassBonus('vitality', selectedClass, self.bonuses) + statistics.getDefaultStat());
-      self.newCharacterIntellect(statistics.getClassBonus('intellect', selectedClass, self.bonuses) + statistics.getDefaultStat());
+      self.newCharacter().strength(newStr);
+      self.newCharacter().dexterity(newDex);
+      self.newCharacter().vitality(newVit);
+      self.newCharacter().intellect(newInt);
     };
 
     self.addCharacter = function () {
-      // marshall data
-      var newChar = {
-          name: self.newCharacterName(),
-          charClass: self.newCharacterClass(),
-          strength: self.newCharacterStrength(),
-          dexterity: self.newCharacterDexterity(),
-          vitality: self.newCharacterVitality(),
-          intellect: self.newCharacterIntellect(),
-          bio: self.newCharacterBiography()
-        };
-
       $.ajax({
         type: 'POST',
         url: '/character/create',
         dataType: 'json',
-        data: newChar,
+        data: self.newCharacter(),
         cache: false,
         success: function (response) {
           if (response.success) {
+            console.log(response);
             // add the new character to the master character list
             self.characters.push(new Character(response.character));
 
             // reset the new character parameters
-            self.newCharacterName('');
-            self.newCharacterClass('');
-            self.newCharacterStrength(statistics.getDefaultStat());
-            self.newCharacterDexterity(statistics.getDefaultStat());
-            self.newCharacterVitality(statistics.getDefaultStat());
-            self.newCharacterIntellect(statistics.getDefaultStat());
-            self.newCharacterBiography('');
+            self.newCharacter(new Character());
           } else {
             alert('error');
             console.log(response.error);
