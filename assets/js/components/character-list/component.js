@@ -51,10 +51,6 @@ define([
       self.sortAscending(sortDirection);
       self.sortIcon(sortIcon);
       self.characters(sorted);
-
-      console.log(sortBy, self.sortField());
-      console.log(sortDirection, self.sortAscending());
-      console.log(sortIcon, self.sortIcon());
     };
 
     self.viewCharacter = function (character) {
