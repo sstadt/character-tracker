@@ -57,7 +57,6 @@ define([
         cache: false,
         success: function (response) {
           if (response.success) {
-            console.log(response);
             // add the new character to the master character list
             self.characters.push(new Character(response.character));
 

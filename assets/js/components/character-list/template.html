@@ -5,50 +5,50 @@
 			<div class="list-head">
 				<div class="col-md-3">
 					<a href="#" data-bind="click: sortCharacterList.bind($data, 'name')">
-						<i class="glyphicon"></i> Name
+						<i data-bind="visible: sortField() === 'name', attr: { class: sortIcon }"></i> Name
 					</a>
 				</div>
 				<div class="col-md-2">
 					<a href="#" data-bind="click: sortCharacterList.bind($data, 'charClass')">
-						<i class="glyphicon"></i> Class
+						<i data-bind="visible: sortField() === 'charClass', attr: { class: sortIcon }"></i> Class
 					</a>
 				</div>
 				<div class="col-md-1">
 					<a href="#" data-bind="click: sortCharacterList.bind($data, 'strength')">
-						<i class="glyphicon"></i> STR
+						<i data-bind="visible: sortField() === 'strength', attr: { class: sortIcon }"></i> STR
 					</a>
 				</div>
 				<div class="col-md-1">
 					<a href="#" data-bind="click: sortCharacterList.bind($data, 'dexterity')">
-						<i class="glyphicon"></i> DEX
+						<i data-bind="visible: sortField() === 'dexterity', attr: { class: sortIcon }"></i> DEX
 					</a>
 				</div>
 				<div class="col-md-1">
 					<a href="#" data-bind="click: sortCharacterList.bind($data, 'vitality')">
-						<i class="glyphicon"></i> VIT
+						<i data-bind="visible: sortField() === 'vitality', attr: { class: sortIcon }"></i> VIT
 					</a>
 				</div>
 				<div class="col-md-1">
 					<a href="#" data-bind="click: sortCharacterList.bind($data, 'intellect')">
-						<i class="glyphicon"></i> INT
+						<i data-bind="visible: sortField() === 'intellect', attr: { class: sortIcon }"></i> INT
 					</a>
 				</div>
 				<div class="col-md-1">
 					<a href="#" data-bind="click: sortCharacterList.bind($data, 'health')">
-						<i class="glyphicon"></i> HP
+						<i data-bind="visible: sortField() == 'health', attr: { class: sortIcon }"></i> HP
 					</a>
 				</div>
 				<div class="col-md-2"></div>
 			</div>
 			<div class="list-content" data-bind="visible: characters().length > 0, template: { foreach: characters, beforeRemove: hideCharacterElement, afterAdd: showCharacterElement }">
 				<div class="list-item">
-					<div class="col-md-3" data-bind="text: name">Name</div>
-					<div class="col-md-2" data-bind="text: charClass">Class</div>
-					<div class="col-md-1" data-bind="text: strength">Strength</div>
-					<div class="col-md-1" data-bind="text: dexterity">Dexterity</div>
-					<div class="col-md-1" data-bind="text: vitality">Vitality</div>
-					<div class="col-md-1" data-bind="text: intellect">Intellect</div>
-					<div class="col-md-1" data-bind="text: health">Health</div>
+					<div class="col-md-3" data-bind="text: name"></div>
+					<div class="col-md-2" data-bind="text: charClass"></div>
+					<div class="col-md-1" data-bind="text: strength"></div>
+					<div class="col-md-1" data-bind="text: dexterity"></div>
+					<div class="col-md-1" data-bind="text: vitality"></div>
+					<div class="col-md-1" data-bind="text: intellect"></div>
+					<div class="col-md-1" data-bind="text: health"></div>
 					<div class="col-md-2">
 						<div class="pull-right">
 							<button class="btn btn-xs btn-primary" data-toggle="modal" data-target="#characterModal" data-bind="click: $parent.viewCharacter">

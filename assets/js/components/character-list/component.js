@@ -9,42 +9,52 @@ define([
 ], function ($, ko, Character, html) {
   'use strict';
 
+  function getSortIcon(isAscending) {
+    return isAscending ? 'glyphicon glyphicon-chevron-up' : 'glyphicon glyphicon-chevron-down';
+  }
+
+  function getSortedCharacters(characters, sortBy, ascending) {
+    return characters.sort(function (prev, curr) {
+      var movement = 0,
+        prevVal = (typeof prev[sortBy] === 'function') ? prev[sortBy]() : prev[sortBy], // hand off value in case this is computed
+        currVal = (typeof curr[sortBy] === 'function') ? curr[sortBy]() : curr[sortBy]; // hand off value in case this is computed
+
+      if (prevVal < currVal) {
+        movement = (ascending === false) ? 1 : -1;
+      } else if (prevVal > currVal) {
+        movement = (ascending === true) ? 1 : -1;
+      }
+
+      return movement;
+    });
+  }
+
   function CharacterListViewModel() {
     // cache this to avoid conflicts later
     var self = this;
 
     // list data
-    this.characters = ko.observableArray([]);
-    this.selectedCharacter = ko.observable();
+    self.characters = ko.observableArray([]);
+    self.selectedCharacter = ko.observable();
 
-    self.sortCharacterList = function (sortBy, modelView, event) {
-      var btn = $(event.target),
-        order = btn.find('i').hasClass('glyphicon-chevron-up') ? 'desc' : 'asc',
-        newicon = (order === 'asc') ? 'glyphicon-chevron-up' : 'glyphicon-chevron-down',
-        sorted;
+    // sort data
+    self.sortAscending = ko.observable(true);
+    self.sortField = ko.observable();
+    self.sortIcon = ko.observable('glyphicon glyphicon-chevron-up');
 
-      // set icons
-      btn.find('i').attr('class', 'glyphicon ' + newicon);
-      btn.closest('[class^="col-"').siblings().find('i').each(function () {
-        $(this).attr('class', 'glyphicon');
-      });
+    self.sortCharacterList = function (sortBy) {
+      var sortDirection = (sortBy !== self.sortField()) ? true : !self.sortAscending(),
+        sortIcon = getSortIcon(sortDirection),
+        sorted = getSortedCharacters(self.characters(), sortBy, sortDirection);
 
-      // sort the observable
-      sorted = this.characters().sort(function (prev, curr) {
-        var movement = 0,
-          prevVal = (typeof prev[sortBy] === 'function') ? prev[sortBy]() : prev[sortBy], // hand off value in case this is computed
-          currVal = (typeof curr[sortBy] === 'function') ? curr[sortBy]() : curr[sortBy]; // hand off value in case this is computed
+      self.sortField(sortBy);
+      self.sortAscending(sortDirection);
+      self.sortIcon(sortIcon);
+      self.characters(sorted);
 
-        if (prevVal < currVal) {
-          movement = (order === 'desc') ? 1 : -1;
-        } else if (prevVal > currVal) {
-          movement = (order === 'asc') ? 1 : -1;
-        }
-
-        return movement;
-      });
-
-      this.characters(sorted);
+      console.log(sortBy, self.sortField());
+      console.log(sortDirection, self.sortAscending());
+      console.log(sortIcon, self.sortIcon());
     };
 
     self.viewCharacter = function (character) {
