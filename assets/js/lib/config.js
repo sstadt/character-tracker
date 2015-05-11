@@ -4,39 +4,30 @@
 requirejs.config({
   paths: {
     // plugins
-    'text': 'plugins/text',
-    'jsx': 'plugins/jsx',
+    'text'           : 'plugins/text',
 
     // vendor
-    'sails': 'vendor/sails.io',
-    'jquery': 'vendor/jquery-2.1.1',
-    'lodash': 'vendor/lodash.compat',
-    'bootstrap': 'vendor/bootstrap',
-    'knockout': 'vendor/knockout-3.2.0',
-    'react': 'vendor/react',
-    'JSXTransformer': 'vendor/JSXTransformer',
+    'sails'          : 'vendor/sails.io.js/sails.io',
+    'jquery'         : 'vendor/jquery/dist/jquery',
+    'lodash'         : 'vendor/lodash/lodash',
+    'bootstrap'      : 'vendor/bootstrap/dist/js/bootstrap',
+    'knockout'       : 'vendor/knockout/dist/knockout',
 
     // classes
-    'Character': 'lib/classes/Character',
-    'CharacterClass': 'lib/classes/CharacterClass',
+    'Character'      : 'lib/classes/Character',
+    'CharacterClass' : 'lib/classes/CharacterClass',
 
     // util
-    'statistics': 'lib/statistics'
+    'statistics'     : 'lib/utils/statistics'
   },
   shim: {
     'bootstrap': {
       deps: ['jquery']
     },
-    'react': {
-      deps: ['jsx']
-    }
   },
   deps: [
-    'knockout', 'jquery', 'sails', 'bootstrap'
+    'knockout', 'jquery', 'bootstrap'
   ],
-  jsx: {
-    fileExtension: '.jsx'
-  },
   callback: function (ko, $) {
 
     /* Custom Data Bindings

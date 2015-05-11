@@ -21,15 +21,6 @@ define([
     // cache this to prevent potential conflicts without having to constantly pass context arguments
     var self = this;
 
-    /**
-     * Master character list
-     *
-     * By setting this to the passed in cahracter list parameter,
-     * this component's character list becomes linked with the
-     * parent component's character list, so any updates we make here
-     * (i.e. updating a character) will be reflected in the parent
-     * component.
-     */
     self.characters = params.characterList;
 
     // selected character data
@@ -37,30 +28,11 @@ define([
     self.selectedCharacterName = ko.observable();
     self.selectedCharacterBiography = ko.observable();
 
-    /**
-     * Subscribe to the selectedCharacter observable.
-     *
-     * This is done to keep editable data synced to the selected character.
-     * Using the master selectedCharacter observable, you are unable to
-     * perform updates so we watch for updates to the linked selectedCharacter
-     * observable and update the simple observables that can retrieved and
-     * used later.
-     * 
-     * @param  {object} selectedCharacter The updated selectedCharacter, passed by knockout
-     * @return {void}
-     */
     self.selectedCharacter.subscribe(function (selectedCharacter) {
       self.selectedCharacterName(selectedCharacter.name);
       self.selectedCharacterBiography(selectedCharacter.bio);
     });
 
-    /**
-     * Update an existing character.
-     *
-     * Sends an ajax call to the back-end, and update the character list.
-     * 
-     * @return {void}
-     */
     self.updateCharacter = function () {
       // set up the updated character object for sails
       var updatedChar = {

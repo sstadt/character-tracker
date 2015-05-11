@@ -22,15 +22,6 @@ define([
     // cache this to prevent potential conflicts
     var self = this;
 
-    /**
-     * Master character list
-     *
-     * By setting this to the passed in cahracter list parameter,
-     * this component's character list becomes linked with the
-     * parent component's character list, so any updates we make here
-     * (i.e. adding a new character) will be reflected in the parent
-     * component.
-     */
     self.characters = params.characterList;
 
     // class data
@@ -46,12 +37,6 @@ define([
     self.newCharacterIntellect = ko.observable(statistics.getDefaultStat());
     self.newCharacterBiography = ko.observable();
 
-    /**
-     * Set the character class for a new character.
-     *
-     * Updates the statistics based on the selected character
-     * class and it's corresponding statistic bonuses
-     */
     self.setNewCharacterClass = function () {
       // find the selected character class details based on the current data-bind value
       var selectedClass = _.find(self.classes(), function (c) {
@@ -65,14 +50,6 @@ define([
       self.newCharacterIntellect(statistics.getClassBonus('intellect', selectedClass, self.bonuses) + statistics.getDefaultStat());
     };
 
-    /**
-     * Add a new character
-     *
-     * After an ajax call to the back-end, adds the new character
-     * to the master character list, which is bound to the parent
-     * compnent's character list, triggering an automatic update
-     * in the character list parent component.
-     */
     self.addCharacter = function () {
       // marshall data
       var newChar = {
