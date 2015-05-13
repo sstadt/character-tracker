@@ -25,7 +25,7 @@ define(['knockout', 'statistics'], function (ko, statistics) {
       data = {};
     }
 
-    this.id = data.id || '';
+    this.id = data.id || undefined;
     this.name = ko.observable(data.name || '');
     this.charClass = data.charClass || '';
     this.strength = ko.observable(data.strength || statistics.getDefaultStat());

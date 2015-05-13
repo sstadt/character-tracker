@@ -22,5 +22,10 @@
     "knockout": "~3.3.0",
     "lodash": "~3.8.0",
     "requirejs": "~2.1.17"
+  },
+  "devDependencies": {
+    "mocha": "~2.2.4",
+    "chai": "~2.3.0",
+    "kotest": "~0.0.1"
   }
 }

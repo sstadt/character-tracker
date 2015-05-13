@@ -37,6 +37,11 @@ module.exports.routes = {
     view: 'tracker/index'
   },
 
+  // tests
+  '/tests': {
+    view: 'tracker/tests'
+  },
+
   // hard coded data
   '/static/classes': {
     controller: 'static',

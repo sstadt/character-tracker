@@ -2,6 +2,7 @@
 /*globals requirejs, alert, confirm, io*/
 
 requirejs.config({
+  urlArgs: 'v=' + (new Date()).getTime(),
   paths: {
     // plugins
     'text'           : 'plugins/text',
@@ -18,12 +19,22 @@ requirejs.config({
     'CharacterClass' : 'lib/classes/CharacterClass',
 
     // util
-    'statistics'     : 'lib/utils/statistics'
+    'statistics'     : 'lib/utils/statistics',
+
+    // testing
+    'mocha'          : 'vendor/mocha/mocha',
+    'chai'           : 'vendor/chai/chai',
   },
   shim: {
     'bootstrap': {
       deps: ['jquery']
     },
+    'mocha': {
+      init: function () {
+        this.mocha.setup('bdd');
+        return this.mocha;
+      }
+    }
   },
   deps: [
     'knockout', 'jquery', 'bootstrap'
