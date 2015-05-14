@@ -1,5 +1,5 @@
 /*jslint browser: true*/
-/*globals define, describe, it*/
+/*globals define, describe, beforeEach, it*/
 
 define([
   'chai',
@@ -41,34 +41,26 @@ define([
     });
 
     describe('#getClassBonus', function () {
-      it('should return a number', function () {
-        var testClass = new CharacterClass({ primary: 'strength', secondary: 'dexterity', tertiary: 'smarts' }),
-          testBonuses = { primary: 6, secondary: 3, tertiary: -2 };
+      var testClass, testBonuses;
 
+      beforeEach(function () {
+        testClass = new CharacterClass({ primary: 'strength', secondary: 'dexterity', tertiary: 'smarts' });
+        testBonuses = { primary: 6, secondary: 3, tertiary: -2 };
+      });
+
+      it('should return a number', function () {
         expect(statistics.getClassBonus('strength', testClass, testBonuses)).to.be.a('number');
       });
       it('should return 0 if there is no corresponding statistic found', function () {
-        var testClass = new CharacterClass({ primary: 'strength', secondary: 'dexterity', tertiary: 'smarts' }),
-          testBonuses = { primary: 6, secondary: 3, tertiary: -2 };
-
         expect(statistics.getClassBonus('agility', testClass, testBonuses)).to.equal(0);
       });
       it('should return the corresponding statistic bonus', function () {
-        var testClass = new CharacterClass({ primary: 'strength', secondary: 'dexterity', tertiary: 'smarts' }),
-          testBonuses = { primary: 6, secondary: 3, tertiary: -2 };
-
         expect(statistics.getClassBonus('strength', testClass, testBonuses)).to.equal(6);
       });
       it('should return the corresponding statistic bonus', function () {
-        var testClass = new CharacterClass({ primary: 'strength', secondary: 'dexterity', tertiary: 'smarts' }),
-          testBonuses = { primary: 6, secondary: 3, tertiary: -2 };
-
         expect(statistics.getClassBonus('dexterity', testClass, testBonuses)).to.equal(3);
       });
       it('should return the corresponding statistic bonus', function () {
-        var testClass = new CharacterClass({ primary: 'strength', secondary: 'dexterity', tertiary: 'smarts' }),
-          testBonuses = { primary: 6, secondary: 3, tertiary: -2 };
-
         expect(statistics.getClassBonus('smarts', testClass, testBonuses)).to.equal(-2);
       });
     });
