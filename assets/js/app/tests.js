@@ -3,13 +3,13 @@
 
 require([
   'mocha',
-  'tests/classes/character'
-], function (mocha, characterTests) {
+  'tests/classes',
+  'tests/utils',
+], function (mocha, classTests, utilTests) {
   'use strict';
 
-  describe('Classes', function () {
-    describe('Character', characterTests);
-  });
+  describe('Utilities', utilTests);
+  describe('Classes', classTests);
 
   mocha.run();
 });

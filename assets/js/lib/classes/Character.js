@@ -21,21 +21,24 @@ define(['knockout', 'statistics'], function (ko, statistics) {
   'use strict';
 
   return function Character(data) {
+
+    var self = this;
+
     if (data === undefined) {
       data = {};
     }
 
-    this.id = data.id || undefined;
-    this.name = ko.observable(data.name || '');
-    this.charClass = data.charClass || '';
-    this.strength = ko.observable(data.strength || statistics.getDefaultStat());
-    this.dexterity = ko.observable(data.dexterity || statistics.getDefaultStat());
-    this.vitality = ko.observable(data.vitality || statistics.getDefaultStat());
-    this.intellect = ko.observable(data.intellect || statistics.getDefaultStat());
-    this.bio = ko.observable(data.bio || '');
+    self.id = data.id || undefined;
+    self.name = ko.observable(data.name || '');
+    self.charClass = data.charClass || '';
+    self.strength = ko.observable(data.strength || statistics.getDefaultStat());
+    self.dexterity = ko.observable(data.dexterity || statistics.getDefaultStat());
+    self.vitality = ko.observable(data.vitality || statistics.getDefaultStat());
+    self.intellect = ko.observable(data.intellect || statistics.getDefaultStat());
+    self.bio = ko.observable(data.bio || '');
 
-    this.health = ko.computed(function () {
-      return statistics.getAdjusted(10, data.vitality);
+    self.health = ko.computed(function () {
+      return statistics.getHealth(self.vitality());
     });
   };
 });

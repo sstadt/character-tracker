@@ -27,9 +27,9 @@ define('statistics', function () {
      * @param  {int} attribute The attribute value that adjusts base
      * @return {int}           The adjusted statistic
      */
-    getAdjusted: function (base, attribute) {
-      var bonus = Math.floor((attribute - 12) / 2);
-      return base + bonus;
+    getHealth: function (vitality) {
+      var bonus = Math.floor((vitality - 12) / 2);
+      return 10 + bonus;
     },
 
     /**

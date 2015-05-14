@@ -1,7 +1,7 @@
 /*jslint browser: true*/
 /*globals define, describe, it*/
 
-define(['mocha', 'chai', 'Character', 'statistics'], function (mocha, chai, Character, statistics) {
+define(['chai', 'Character', 'statistics', 'mocha'], function (chai, Character, statistics) {
   'use strict';
 
   var expect = chai.expect,
@@ -125,7 +125,6 @@ define(['mocha', 'chai', 'Character', 'statistics'], function (mocha, chai, Char
       });
       it('should set a vitality if one is passed in', function () {
         var c = new Character({ vitality: 10 });
-        console.log(c);
         expect(c.vitality()).to.equal(10);
       });
     });

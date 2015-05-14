@@ -87,6 +87,7 @@ define([
             return c.name;
           }));
 
+          console.log(response.bonuses);
           self.bonuses = response.bonuses;
         } else {
           alert('error getting classes');

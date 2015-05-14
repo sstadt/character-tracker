@@ -18,6 +18,10 @@ define(['knockout'], function (ko) {
   return function CharacterClass(data) {
     var self = this;
 
+    if (data === undefined) {
+        data = {};
+    }
+
     self.name = data.name;
     self.primary = data.primary;
     self.secondary = data.secondary;
